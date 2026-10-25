@@ -14,7 +14,7 @@ export function frontMatter(text) {
   const fm = {}; for (const l of m[1].split("\n")) { const kv = /^([A-Za-z][\w-]*):\s*(.*)$/.exec(l); if (!kv) continue; const v = kv[2].trim(); fm[kv[1]] = /^\[.*\]$/.test(v) ? v.slice(1, -1).split(",").map((x) => x.trim()).filter(Boolean) : v; }
   return { fm, body: m[2] };
 }
-const section = (body, h) => { const m = new RegExp(`^## ${h}\\n+([\\s\\S]*?)(?=\\n## |$)`, "m").exec(body); return m ? m[1].split("\n").filter((l) => /^- /.test(l)).map((l) => l.slice(2).trim()) : []; };
+const section = (body, h) => { const m = new RegExp(`^## ${h}\\n+([\\s\\S]*?)(?=\\n## |(?![\\s\\S]))`, "m").exec(body); return m ? m[1].split("\n").filter((l) => /^- /.test(l)).map((l) => l.slice(2).trim()) : []; };
 export function registry(root) {
   const read = (kind, file) => { const dir = path.join(root, kind); return (fs.existsSync(dir) ? fs.readdirSync(dir) : []).filter((d) => fs.existsSync(path.join(dir, d, file))).sort().map((d) => ({ dir: d, ...(frontMatter(fs.readFileSync(path.join(dir, d, file), "utf8")) ?? { fm: null, body: "" }) })); };
   const roles = read("roles", "ROLE.md").map(({ dir, fm, body }) => ({ id: fm?.name ?? dir, title: fm?.title ?? dir, team: fm?.team ?? null, reportsTo: fm?.reportsTo ?? null, layer: fm?.layer ?? null, description: fm?.description ?? "", mission: (/\*\*Mission\.\*\*\s*(.+)/.exec(body)?.[1] ?? "").trim(), inScope: section(body, "In scope"), outOfScope: section(body, "Out of scope"), skills: fm?.skills ?? [], from: fm?.from ?? null, path: `roles/${dir}/ROLE.md` }));

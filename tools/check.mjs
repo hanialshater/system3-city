@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Validates the city: every registry card and every shared knowledge entry. Dependency-free; CI runs it on every PR.
+// Validates the city: every registry card, every shared knowledge entry and the shared catalog (generic roles included). Dependency-free; CI runs it on every PR.
 //   node tools/check.mjs [root]    exit 1 with the problems, if any
 import fs from "node:fs";
 import path from "node:path";
@@ -10,6 +10,20 @@ const KINDS = ["practice", "finding", "dead-end", "pitfall"];
 const ID = /^[a-z0-9][a-z0-9-]{0,62}$/;
 // what must never be published: tokens and keys, and e-mail addresses (personal data)
 const SECRET = /(gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[abp]-[A-Za-z0-9-]{10,}|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/;
+
+// P12, copy then customise: a catalog role is generic, so it names no company's paths or commands. A <placeholder> in
+// its "What your company supplies" section may, and so may the `from:` provenance line in its front matter.
+const COMPANY_PATH = /(?:^|[^\w./-])(?:company|tools|tests|src)\/|npm run company/;
+export function companySpecific(raw) {
+  const found = []; let supplies = false;
+  raw.split("\n").forEach((line, i) => {
+    if (/^## /.test(line)) supplies = /^## What your company supplies\s*$/.test(line);
+    if (/^from:/.test(line)) return;
+    const text = supplies ? line.replace(/<[^<>\n]*>/g, "") : line;
+    if (COMPANY_PATH.test(text)) found.push(i + 1);
+  });
+  return found;
+}
 
 export function check(root) {
   const p = [], ids = new Set(), regDir = path.join(root, "registry", "companies"), kDir = path.join(root, "knowledge");
@@ -53,6 +67,7 @@ export function check(root) {
       if (fm.name !== d || !ID.test(d)) p.push(`${at}: name must match the folder (lowercase letters, digits and dashes)`);
       if (!String(fm.description ?? "").trim()) p.push(`${at}: description is required`);
       if (kind === "roles") for (const s of fm.skills ?? []) if (!skillIds.has(s)) p.push(`${at}: skill ${s} is not in skills/`);
+      if (kind === "roles") for (const n of companySpecific(raw)) p.push(`${at}:${n}: names a company-specific path or command (write it as a <placeholder> under "What your company supplies")`);
       if (kind === "pages" && fm.kind === "template" && !fs.existsSync(path.join(dir, d, "page.js"))) p.push(`${at}: a template page needs page.js`);
       if (kind === "pages" && fs.existsSync(path.join(dir, d, "page.js")) && SECRET.test(fs.readFileSync(path.join(dir, d, "page.js"), "utf8"))) p.push(`pages/${d}/page.js: looks like a secret or personal data`);
     }

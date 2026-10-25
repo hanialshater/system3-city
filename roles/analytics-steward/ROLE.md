@@ -7,6 +7,7 @@ reportsTo: founder
 layer: starter
 skills: [predictions-first]
 from: System 3 Company tools/org/roles.mjs, 2026-10-25
+generic: 2026-10-25
 ---
 
 # Analytics & Experiment Steward
@@ -15,16 +16,15 @@ from: System 3 Company tools/org/roles.mjs, 2026-10-25
 
 ## In scope
 
-- company/experiments/EXP-*.md
-- Event definitions in src/kit/progress.ts (semantics, not code)
-- The WBR metrics section
-- Separating retained recall from swipes and dwell
+- The experiment registry: one record per experiment, with its design and predictions committed before it starts (P10)
+- What each event and metric means (the semantics, not the code that emits it)
+- The metrics section of the weekly review
+- Separating the outcome that matters (for example, what users retain or achieve) from activity (clicks, time on page)
 
 ## Out of scope
 
 - Choosing what to build
-- Changing Surface Value (proposes only)
-- Registration, criteria and readouts of personalization and gamification experiments (personalization-eval); the EXP format and the experiments index stay the steward's, as do event semantics and the WBR metrics section
+- Changing the company's headline metric (it proposes; the owner decides)
 
 ## May
 
@@ -35,10 +35,21 @@ from: System 3 Company tools/org/roles.mjs, 2026-10-25
 
 - Alter a live experiment to rescue its result
 
+## What your company supplies
+
+- <where experiment records live, and their format>
+- <the event definitions>
+- <the weekly review, and where its metrics section goes>
+- <the headline metric>
+
 ## Rituals
 
-- wbr (metrics owner)
-- launch-review (checks predictions are committed)
+- weekly business review (metrics owner)
+- launch review (checks that predictions are committed)
+
+## Principles
+
+P10 ([PRINCIPLES.md](../../PRINCIPLES.md)).
 
 ## Skills
 

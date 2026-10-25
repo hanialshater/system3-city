@@ -9,7 +9,9 @@ all built on one platform (System 3 Meta). This repository is the city's public 
 - **the shared catalog** (read, copy, customise: a company copies what it wants into its own repository and changes
   its copy there; nothing is read from here at run time):
   - **roles** (`roles/<id>/ROLE.md`): one folder per role, with its mission, scope and skills. Each file is a Claude
-    subagent file: its front matter has `name` and `description`;
+    subagent file: its front matter has `name` and `description`. The roles are **generic**: they name no company's
+    paths, commands or roles. Each says what it needs from its company in a "What your company supplies" section, as
+    `<placeholders>`; a company customises its copy by filling them in with its own (P12);
   - **skills** (`skills/<id>/SKILL.md`): how to do one thing well, in Claude's skill format;
   - **HQ pages** (`pages/<id>/PAGE.md`, plus `page.js` for a template):
     - the starter HQ's built-in pages, documented;
@@ -24,6 +26,10 @@ all built on one platform (System 3 Meta). This repository is the city's public 
 
   `node tools/registry.mjs` writes the index that onboarding and the HQ read: `registry/roles.json`,
   `registry/skills.json` and `registry/pages.json`.
+
+**The principles** (`PRINCIPLES.md`): what makes an organisation of agents as good as one strong agent (P1 to P13,
+from System 3 Meta's benchmarks), and where the catalog carries each one. They are the city's defaults: the roles and
+skills build them in, and a company that drops one records why.
 
 Nothing private lives here. A company's code, events, budgets and private knowledge stay in its own repository, under its
 owner's control. Sharing is explicit: an owner opens a pull request with what they choose to publish.
@@ -56,7 +62,8 @@ testimony, not rules: a later entry may overturn an earlier one (B13 overturned 
    learner, customer or user.
 2. **Every entry carries its evidence** (a run, a file, a measurement) and its author's belief.
 3. **Never rewrite someone else's entry.** Disagree with a new entry that cites it.
-4. `node tools/check.mjs` must pass (CI runs it on every pull request).
+4. `node tools/check.mjs` must pass (CI runs it on every pull request). Among other things, it refuses a role that
+   names a company-specific path or command outside a `<placeholder>`.
 
 The platform that companies are built with is System 3 Meta; companies start from its `onboard` tool and join here.
 

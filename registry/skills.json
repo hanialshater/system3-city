@@ -64,6 +64,15 @@
    ]
   },
   {
+   "id": "org-in-proportion",
+   "description": "Design or review an organisation of agents so it is no bigger and no more fragmented than its work needs - the single-agent baseline first, an org only for a stated reason, one warm maker per item with independent checks at the end, few members, and a cost target with a stop rule. Use when proposing a company, a flow or a crew, when adding a role, and in every org health review.",
+   "path": "skills/org-in-proportion/SKILL.md",
+   "usedBy": [
+    "chief-of-staff",
+    "chief-of-staff-ceo-office"
+   ]
+  },
+  {
    "id": "predictions-first",
    "description": "Commit predictions before a run, an experiment or a launch, then judge the result against them (wrong ones included). Use whenever work will produce a number someone will read as success or failure.",
    "path": "skills/predictions-first/SKILL.md",
