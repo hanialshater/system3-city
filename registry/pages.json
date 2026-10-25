@@ -1,0 +1,120 @@
+{
+ "v": 1,
+ "pages": [
+  {
+   "id": "asks",
+   "title": "Decisions inbox",
+   "description": "Everything waiting on the company's owner (the CEO), by priority, with what each blocks, the options, the recommendation and links; and how many are open by kind.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/asks/PAGE.md",
+   "module": "pages/asks/page.js"
+  },
+  {
+   "id": "board",
+   "title": "Board",
+   "description": "Findings, dead ends, hypotheses and decisions, grouped by area or by team, each with its evidence and what would show it wrong.",
+   "kind": "built-in",
+   "reads": [
+    "events (board.post",
+    "claim)",
+    "org"
+   ],
+   "path": "pages/board/PAGE.md"
+  },
+  {
+   "id": "dashboard",
+   "title": "Dashboard",
+   "description": "Mission, budget lines (approved, spent, live; in dollars or tokens), spend over time and by member, milestones and KPIs.",
+   "kind": "built-in",
+   "reads": [
+    "dashboard",
+    "events"
+   ],
+   "path": "pages/dashboard/PAGE.md"
+  },
+  {
+   "id": "knowledge",
+   "title": "Knowledge",
+   "description": "Documents (ADR, EDD, TDD, BRD, PRD, decisions, runbooks, research, experiments, minutes) with a reader, and lessons by company or team scope.",
+   "kind": "built-in",
+   "reads": [
+    "docs",
+    "knowledge"
+   ],
+   "path": "pages/knowledge/PAGE.md"
+  },
+  {
+   "id": "meetings",
+   "title": "Meetings",
+   "description": "Every meeting: room, chair, participants, summary, decisions, objections, and the record it wrote.",
+   "kind": "built-in",
+   "reads": [
+    "events (meeting)",
+    "docs",
+    "building"
+   ],
+   "path": "pages/meetings/PAGE.md"
+  },
+  {
+   "id": "notes",
+   "title": "Notes",
+   "description": "The members' messages, by hour, as a record.",
+   "kind": "built-in",
+   "reads": [
+    "events (note)"
+   ],
+   "path": "pages/notes/PAGE.md"
+  },
+  {
+   "id": "org",
+   "title": "Org",
+   "description": "The org tree from the org tool: collapsible, the chain of command to the top for anyone, links, and org changes from the log.",
+   "kind": "built-in",
+   "reads": [
+    "org",
+    "events",
+    "dashboard"
+   ],
+   "path": "pages/org/PAGE.md"
+  },
+  {
+   "id": "overview",
+   "title": "Overview",
+   "description": "The company at a glance: links, mission, what waits on the CEO, its numbers, members and latest activity.",
+   "kind": "built-in",
+   "reads": [
+    "dashboard",
+    "events",
+    "org"
+   ],
+   "path": "pages/overview/PAGE.md"
+  },
+  {
+   "id": "people",
+   "title": "People",
+   "description": "A directory of everyone in the org (name, title, team, where they sit, who they report to), searchable by team, with each person's last activity from the event log.",
+   "kind": "template",
+   "reads": [
+    "org",
+    "events"
+   ],
+   "path": "pages/people/PAGE.md",
+   "module": "pages/people/page.js"
+  },
+  {
+   "id": "rooms",
+   "title": "Rooms",
+   "description": "The building: fixed floors and rooms, people at their desks, in meetings (with who is in them) or in the garden; replay with the activity beside it.",
+   "kind": "built-in",
+   "reads": [
+    "building",
+    "org",
+    "events"
+   ],
+   "path": "pages/rooms/PAGE.md"
+  }
+ ]
+}

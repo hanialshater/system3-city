@@ -4,6 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { registry, frontMatter } from "./registry.mjs";
 
 const KINDS = ["practice", "finding", "dead-end", "pitfall"];
 const ID = /^[a-z0-9][a-z0-9-]{0,62}$/;
@@ -37,6 +38,26 @@ export function check(root) {
       if (!(typeof e.belief === "number" && e.belief >= 0 && e.belief <= 1)) p.push(`${at}: belief is a number from 0 to 1`);
     });
   }
+  // the shared catalog: each role, skill and page folder has its Markdown file with front matter, its name matches its
+  // folder, a role's skills exist, a template page has its module; and the registry is up to date
+  const reg = registry(root), skillIds = new Set(reg.skills.skills.map((x) => x.id));
+  for (const [kind, file] of [["roles", "ROLE.md"], ["skills", "SKILL.md"], ["pages", "PAGE.md"]]) {
+    const dir = path.join(root, kind);
+    for (const d of fs.existsSync(dir) ? fs.readdirSync(dir) : []) {
+      const f = path.join(dir, d, file), at = `${kind}/${d}/${file}`;
+      if (!fs.statSync(path.join(dir, d)).isDirectory()) continue;
+      if (!fs.existsSync(f)) { p.push(`${at}: missing`); continue; }
+      const raw = fs.readFileSync(f, "utf8"), fm = frontMatter(raw)?.fm;
+      if (SECRET.test(raw)) p.push(`${at}: looks like a secret or personal data`);
+      if (!fm) { p.push(`${at}: needs front matter between --- lines`); continue; }
+      if (fm.name !== d || !ID.test(d)) p.push(`${at}: name must match the folder (lowercase letters, digits and dashes)`);
+      if (!String(fm.description ?? "").trim()) p.push(`${at}: description is required`);
+      if (kind === "roles") for (const s of fm.skills ?? []) if (!skillIds.has(s)) p.push(`${at}: skill ${s} is not in skills/`);
+      if (kind === "pages" && fm.kind === "template" && !fs.existsSync(path.join(dir, d, "page.js"))) p.push(`${at}: a template page needs page.js`);
+      if (kind === "pages" && fs.existsSync(path.join(dir, d, "page.js")) && SECRET.test(fs.readFileSync(path.join(dir, d, "page.js"), "utf8"))) p.push(`pages/${d}/page.js: looks like a secret or personal data`);
+    }
+  }
+  for (const k of ["roles", "skills", "pages"]) { const f = path.join(root, "registry", `${k}.json`); if (!fs.existsSync(f) || fs.readFileSync(f, "utf8") !== JSON.stringify(reg[k], null, 1) + "\n") p.push(`registry/${k}.json: out of date (run node tools/registry.mjs)`); }
   return p;
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

@@ -1,0 +1,86 @@
+{
+ "v": 1,
+ "skills": [
+  {
+   "id": "artifact-before-account",
+   "description": "Evaluate the artifact before reading the maker's account of it, and write your findings before opening their notes. Use for every review, evaluation, fact-check or QA pass.",
+   "path": "skills/artifact-before-account/SKILL.md",
+   "usedBy": [
+    "evaluation-steward",
+    "fact-checker",
+    "qa-tester"
+   ]
+  },
+  {
+   "id": "claims-ledger",
+   "description": "Treat every factual sentence a user will see as a claim with an address, a kind of support and a source, verified by someone other than its author. Use when building content that states facts.",
+   "path": "skills/claims-ledger/SKILL.md",
+   "usedBy": [
+    "fact-checker"
+   ]
+  },
+  {
+   "id": "decision-record",
+   "description": "Record a decision with its owner, date, status, the options, the reason and the objections that travel with it. Use for any decision another role will rely on (architecture, org, budget, product).",
+   "path": "skills/decision-record/SKILL.md",
+   "usedBy": [
+    "architect",
+    "chief-of-staff",
+    "chief-of-staff-ceo-office",
+    "portfolio-manager",
+    "principal-engineer",
+    "privacy-reviewer"
+   ]
+  },
+  {
+   "id": "hq-page",
+   "description": "Build a page for a company's HQ (or a template for the city's pages/) from the HQ's contracts only (events, org, dashboard, knowledge, documents), never from the company's files. Use when a company needs a view the starter pages do not have.",
+   "path": "skills/hq-page/SKILL.md",
+   "usedBy": [
+    "hq-engineer"
+   ]
+  },
+  {
+   "id": "land-past-the-referee",
+   "description": "Get work onto main only through the referee (the test suite, a held-out set, a judge script), so main never gets worse. Use for every change to a product that has a referee.",
+   "path": "skills/land-past-the-referee/SKILL.md",
+   "usedBy": [
+    "architect",
+    "area-engineer",
+    "evaluation-steward",
+    "principal-engineer",
+    "release-manager",
+    "sweeper"
+   ]
+  },
+  {
+   "id": "meeting-minutes",
+   "description": "Record a meeting's minutes (title, room, chair, attendees, decisions, objections, a summary and the record it wrote) as an event the HQ shows in Meetings and Rooms. Use whenever two or more roles meet to decide something.",
+   "path": "skills/meeting-minutes/SKILL.md",
+   "usedBy": [
+    "architect",
+    "chief-of-staff",
+    "chief-of-staff-ceo-office"
+   ]
+  },
+  {
+   "id": "predictions-first",
+   "description": "Commit predictions before a run, an experiment or a launch, then judge the result against them (wrong ones included). Use whenever work will produce a number someone will read as success or failure.",
+   "path": "skills/predictions-first/SKILL.md",
+   "usedBy": [
+    "analytics-steward",
+    "chief-of-staff",
+    "evaluation-steward"
+   ]
+  },
+  {
+   "id": "record-lessons",
+   "description": "Leave what you learned as knowledge entries (practice, finding, dead end, pitfall) with evidence and a belief from 0 to 1, so the next member starts where you stopped. Use when leaving a run, after a surprising result, or when off-boarding.",
+   "path": "skills/record-lessons/SKILL.md",
+   "usedBy": [
+    "area-engineer",
+    "sweeper"
+   ]
+  }
+ ]
+}

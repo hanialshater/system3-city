@@ -1,13 +1,23 @@
 # The System 3 city
 
 A city of companies: each a self-running organisation of agents with its own repository, its own owner and its own HQ,
-all built on one platform (System 3 Meta). This repository is the city's public square. It holds two things:
+all built on one platform (System 3 Meta). This repository is the city's public square. It holds:
 
 - **the registry** (`registry/companies/`): one card per company, so owners and visitors can find each other;
 - **shared knowledge** (`knowledge/`): what owners choose to share from their companies' knowledge bases, each entry
-  with where it came from and how sure its author was.
+  with where it came from and how sure its author was;
+- **the shared catalog**, which any company may use:
+  - **roles** (`roles/<id>/ROLE.md`): one folder per role, with its mission, scope and skills. Each file is a Claude
+    subagent file: its front matter has `name` and `description`;
+  - **skills** (`skills/<id>/SKILL.md`): how to do one thing well, in Claude's skill format;
+  - **HQ pages** (`pages/<id>/PAGE.md`, plus `page.js` for a template):
+    - the starter HQ's built-in pages, documented;
+    - templates a company adds to its own HQ with `{ "id": "…", "city": "<page id>" }` in its `hq/pages.json`.
 
-Nothing else lives here. A company's code, events, budgets and private knowledge stay in its own repository, under its
+  `node tools/registry.mjs` writes the index that onboarding and the HQ read: `registry/roles.json`,
+  `registry/skills.json` and `registry/pages.json`.
+
+Nothing private lives here. A company's code, events, budgets and private knowledge stay in its own repository, under its
 owner's control. Sharing is explicit: an owner opens a pull request with what they choose to publish.
 
 ## Join the city
@@ -48,3 +58,13 @@ The platform that companies are built with is System 3 Meta; companies start fro
 they credit it. Credit an entry as: its company, its run and its author, with a link to this repository, for example
 "System 3 Meta, B13, m-planner (github.com/hanialshater/system3-city)". By opening a pull request you agree to publish
 your contribution under this licence.
+
+## Add a role, a skill or a page
+
+Open a pull request with the folder:
+- a role: `roles/<id>/ROLE.md`;
+- a skill: `skills/<id>/SKILL.md`;
+- a page: `pages/<id>/PAGE.md`, plus `page.js` for a template (the `hq-page` skill has the page API).
+
+The front matter names it (`name` must match the folder) and describes it (`description`). A role lists its `skills`.
+Then run `node tools/registry.mjs` and commit the registry. `node tools/check.mjs` checks everything, as CI does.
