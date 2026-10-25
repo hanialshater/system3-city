@@ -1,0 +1,18 @@
+{
+ "v": 1,
+ "id": "quantaplan",
+ "name": "Quantaplan",
+ "owner": "hanialshater",
+ "archetype": "single agent",
+ "summary": "Decision support for plans whose goals, facts and options keep changing: keep several paths open, learn from what happens, and choose an affordable next commitment; the AI estimates and suggests, the human decides. One strong agent, $20 per feature landed past the referee.",
+ "repo": "hanialshater/quantaplan (private)",
+ "hq": null,
+ "joined": "2026-10-25",
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 10,
+  "gaps": 0,
+  "manual": 3,
+  "audited": "2026-10-25"
+ }
+}
