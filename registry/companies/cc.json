@@ -1,3 +1,12 @@
-{ "v": 1, "id": "cc", "name": "C compiler in Clojure", "owner": "hanialshater", "archetype": "dynamic workflow",
-  "summary": "A C compiler in Clojure that compiles Lua and SQLite correctly, with generated code at 1.256x gcc -O2's instruction count.",
-  "repo": "hanialshater/system3-cc", "hq": null, "joined": "2026-10-25" }
+{
+ "v": 1,
+ "id": "cc",
+ "name": "C compiler in Clojure",
+ "owner": "hanialshater",
+ "archetype": "dynamic workflow",
+ "summary": "A C compiler in Clojure that compiles Lua and SQLite correctly, with generated code at 1.256x gcc -O2's instruction count.",
+ "repo": "hanialshater/system3-cc",
+ "hq": null,
+ "joined": "2026-10-25",
+ "site": "https://system3-cc.vercel.app"
+}
