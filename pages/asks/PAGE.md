@@ -12,5 +12,5 @@ from: System 3 city
 A page for the owner: the dashboard contract's `asks`, sorted by priority, with what each one blocks. It shows the
 options, the recommendation and the links, and counts the open asks by kind.
 
-Use it: add `{ "id": "asks", "title": "Decisions", "city": "asks" }` to your `hq/pages.json`. Your dashboard tool
+Use it: copy it into your company (`node src/city-copy.mjs page asks <company dir>`, in system3-meta) and customise your copy. Your dashboard tool
 must print `asks` (Meta's `dashboard.mjs` reads them from `asks.json` beside `company.json`).

@@ -6,13 +6,21 @@ all built on one platform (System 3 Meta). This repository is the city's public 
 - **the registry** (`registry/companies/`): one card per company, so owners and visitors can find each other;
 - **shared knowledge** (`knowledge/`): what owners choose to share from their companies' knowledge bases, each entry
   with where it came from and how sure its author was;
-- **the shared catalog**, which any company may use:
+- **the shared catalog** (read, copy, customise: a company copies what it wants into its own repository and changes
+  its copy there; nothing is read from here at run time):
   - **roles** (`roles/<id>/ROLE.md`): one folder per role, with its mission, scope and skills. Each file is a Claude
     subagent file: its front matter has `name` and `description`;
   - **skills** (`skills/<id>/SKILL.md`): how to do one thing well, in Claude's skill format;
   - **HQ pages** (`pages/<id>/PAGE.md`, plus `page.js` for a template):
     - the starter HQ's built-in pages, documented;
-    - templates a company adds to its own HQ with `{ "id": "…", "city": "<page id>" }` in its `hq/pages.json`.
+    - templates a company copies into its own HQ.
+
+  Copy with Meta's tool: `node src/city-copy.mjs role|skill|page <id> <company dir>`. It writes:
+  - `.claude/agents/<id>.md` for a role;
+  - `.claude/skills/<id>/SKILL.md` for a skill;
+  - `hq/<id>.js`, plus an entry in `hq/pages.json`, for a page.
+
+  Each copy records the city commit it came from.
 
   `node tools/registry.mjs` writes the index that onboarding and the HQ read: `registry/roles.json`,
   `registry/skills.json` and `registry/pages.json`.

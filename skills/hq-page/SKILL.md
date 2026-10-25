@@ -23,11 +23,10 @@ Rules:
 - Style with the HQ's classes (`card`, `row`, `stat`, `chip`, `k`, `empty`, `table`). They follow light and dark.
 - A page with nothing to show says so (`<div class="empty">…</div>`).
 
-To use a template from the city in a company, add it to the company's `hq/pages.json`, using the template's id from
-the city's `pages/`:
+To use a template from the city, copy it into the company and customise the copy:
 
-```json
-[{ "id": "asks", "title": "Decisions", "city": "asks" }]
+```sh
+node src/city-copy.mjs page asks <company dir>   # (in system3-meta) → hq/asks.js and its entry in hq/pages.json
 ```
 
 To share one, open a pull request to the city with `pages/<id>/PAGE.md` and `pages/<id>/page.js`.

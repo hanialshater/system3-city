@@ -12,4 +12,4 @@ from: System 3 city
 A directory of everyone in the org, grouped by team. For each person it shows the name, title, room and floor, who
 they report to, and their last event in the log.
 
-Use it: add `{ "id": "people", "title": "People", "city": "people" }` to your `hq/pages.json`.
+Use it: copy it into your company (`node src/city-copy.mjs page people <company dir>`, in system3-meta) and customise your copy.
