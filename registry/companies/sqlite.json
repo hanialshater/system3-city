@@ -1,0 +1,3 @@
+{ "v": 1, "id": "sqlite", "name": "SQLite in Clojure", "owner": "hanialshater", "archetype": "dynamic workflow",
+  "summary": "A SQLite-compatible database engine in Clojure, judged by SQLite's own test files: 91.85% of the hidden test files' statements, mean per file.",
+  "repo": "hanialshater/system3-sqlite", "hq": null, "joined": "2026-10-25" }
