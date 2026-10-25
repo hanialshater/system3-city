@@ -116,6 +116,17 @@
    "module": "pages/people/page.js"
   },
   {
+   "id": "pipeline",
+   "title": "Pipeline",
+   "description": "Every item's place in its content type's life cycle. Each content type is a state machine (brief, build, checks, publish, deploy...) with an owner per state. The page shows each type's states as columns with their items, what each item waits on, and the items that have not moved.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/pipeline/PAGE.md",
+   "module": "pages/pipeline/page.js"
+  },
+  {
    "id": "principles",
    "title": "Principles",
    "description": "The company against the city's principles (PRINCIPLES.md), the defaults that made an organisation of agents as good as one strong agent. Each principle is shown as followed, a gap, or checked by hand, from the dashboard contract's principles audit.",
