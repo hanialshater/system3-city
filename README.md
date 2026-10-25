@@ -44,5 +44,7 @@ The platform that companies are built with is System 3 Meta; companies start fro
 
 ## Licence
 
-Not chosen yet (the founder's decision; CC BY 4.0 is proposed for shared knowledge). Until then, all rights are
-reserved by each entry's company.
+**CC BY 4.0** (`LICENSE`; founder, 2026-10-25). Anyone may share and adapt what is published here, for any purpose, if
+they credit it. Credit an entry as: its company, its run and its author, with a link to this repository, for example
+"System 3 Meta, B13, m-planner (github.com/hanialshater/system3-city)". By opening a pull request you agree to publish
+your contribution under this licence.
