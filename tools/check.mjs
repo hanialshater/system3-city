@@ -35,6 +35,8 @@ export function check(root) {
     if (c.v !== 1) p.push(`${at}: v must be 1`);
     if (!ID.test(c.id ?? "") || f !== `${c.id}.json`) p.push(`${at}: id must be lowercase letters, digits and dashes, and match the file name`);
     for (const k of ["name", "owner", "archetype", "summary"]) if (!String(c[k] ?? "").trim()) p.push(`${at}: ${k} is required`);
+    // every company follows PRINCIPLES.md and its card carries its latest audit (Meta: node src/principles.mjs <company>)
+    if (c.principles?.source !== "PRINCIPLES.md" || ![c.principles.followed, c.principles.gaps, c.principles.manual].every(Number.isInteger) || !/^\d{4}-\d{2}-\d{2}$/.test(c.principles.audited ?? "")) p.push(`${at}: principles is required: { source: "PRINCIPLES.md", followed, gaps, manual, audited } (PRINCIPLES.md)`);
     ids.add(c.id);
   }
   for (const f of fs.existsSync(kDir) ? fs.readdirSync(kDir) : []) {

@@ -8,5 +8,12 @@
  "repo": "hanialshater/system3-sqlite",
  "hq": null,
  "joined": "2026-10-25",
- "site": "https://system3-sqlite.vercel.app"
+ "site": "https://system3-sqlite.vercel.app",
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 10,
+  "gaps": 0,
+  "manual": 3,
+  "audited": "2026-10-25"
+ }
 }

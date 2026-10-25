@@ -1,5 +1,17 @@
 # The System 3 city
 
+> **Every company in the city follows [PRINCIPLES.md](PRINCIPLES.md).** These are the defaults that made an organisation of agents as good as one strong agent:
+> - the single-agent baseline first, and an org only for a reason;
+> - warm makers, not relays of cold stages;
+> - few members;
+> - an independent referee with a held-out part;
+> - a cost target with a stop rule;
+> - predictions before runs;
+> - lessons with beliefs;
+> - copy, then customise.
+>
+> Onboarding enforces them. Every company's card carries its principles audit, and every HQ shows it on its **Principles** page. A company that breaks one says why, in a decision record its owner approves.
+
 A city of companies: each a self-running organisation of agents with its own repository, its own owner and its own HQ,
 all built on one platform (System 3 Meta). This repository is the city's public square. It holds:
 
@@ -41,7 +53,8 @@ Add `registry/companies/<id>.json` by pull request:
 ```json
 { "v": 1, "id": "kitchen", "name": "Kitchen Co", "owner": "github-handle", "archetype": "dynamic-workflow",
   "summary": "Recipes that work: every recipe cooked and scored before it ships.", "repo": "owner/kitchen (private)",
-  "hq": "https://… (optional: the company's public HQ snapshot)", "joined": "2026-10-25" }
+  "hq": "https://… (optional: the company's public HQ snapshot)", "joined": "2026-10-25",
+  "principles": { "source": "PRINCIPLES.md", "followed": 9, "gaps": 0, "manual": 4, "audited": "2026-10-25" } }
 ```
 
 ## Share knowledge

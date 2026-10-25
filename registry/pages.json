@@ -36,6 +36,17 @@
    "path": "pages/dashboard/PAGE.md"
   },
   {
+   "id": "features",
+   "title": "Features",
+   "description": "The company's features list. Every feature with its status (live, building, planned, retired), since when, its owner, a summary and its links, grouped by status.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/features/PAGE.md",
+   "module": "pages/features/page.js"
+  },
+  {
    "id": "knowledge",
    "title": "Knowledge",
    "description": "Documents (ADR, EDD, TDD, BRD, PRD, decisions, runbooks, research, experiments, minutes) with a reader, and lessons by company or team scope.",
@@ -103,6 +114,28 @@
    ],
    "path": "pages/people/PAGE.md",
    "module": "pages/people/page.js"
+  },
+  {
+   "id": "principles",
+   "title": "Principles",
+   "description": "The company against the city's principles (PRINCIPLES.md), the defaults that made an organisation of agents as good as one strong agent. Each principle is shown as followed, a gap, or checked by hand, from the dashboard contract's principles audit.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/principles/PAGE.md",
+   "module": "pages/principles/page.js"
+  },
+  {
+   "id": "releases",
+   "title": "Release log",
+   "description": "The company's release log, newest first. Each release has its date, title, notes, the commit and who approved it. Every deploy needs the owner's approval (PRINCIPLES.md P13).",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/releases/PAGE.md",
+   "module": "pages/releases/page.js"
   },
   {
    "id": "rooms",

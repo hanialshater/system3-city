@@ -8,5 +8,12 @@
  "repo": "hanialshater/nextjs-blog-hani",
  "hq": null,
  "joined": "2026-10-25",
- "site": "https://www.hani-alshater.com"
+ "site": "https://www.hani-alshater.com",
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 1,
+  "gaps": 8,
+  "manual": 4,
+  "audited": "2026-10-25"
+ }
 }
