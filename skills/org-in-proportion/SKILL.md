@@ -54,3 +54,10 @@ recorded with its evidence.
 - [ ] Any principle the design breaks has its reason in a decision record.
 
 Origin: System 3 Meta's benchmarks B5 to B13, and its PRINCIPLES.md (2026-10-25).
+
+## Logical roles, physical agents
+
+- **Count physical agents, not logical roles, against the size default.** Keep a logical role where an owner of record is needed (one per category, for example).
+- **Run several such roles in one agent when they are the same kind of work on the same artifact.**
+- **Never merge two independent checks into one agent.**
+

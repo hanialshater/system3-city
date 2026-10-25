@@ -27,3 +27,12 @@ a company that drops one records why, in a decision record.
 2. Customise the copy: replace each `<placeholder>` in its "What your company supplies" section with your company's
    own path, command or role, and drop what you do not have. The copy is yours; the catalog's role stays generic.
 3. Break a principle only for a reason the work gives, written in a decision record the owner approves.
+
+## Logical roles and physical agents (2026-10-25)
+
+**A role is a logical seat:** an accountability, a scope and an owner of record. **An agent is a physical session.**
+- **P7 counts physical agents working at once.** A company may keep many logical roles when its breadth needs them; one standing owner per category is how a large catalogue scales.
+- **Group logical roles into one agent when they are the same kind of work on the same artifact,** such as the mechanical tests.
+- **Never group independent witnesses** (P6): a maker and its checker, two judges, a referee and anyone it judges.
+- **Record the grouping** in company.json as `agents: { role: agent }`.
+
