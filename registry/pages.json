@@ -118,7 +118,7 @@
   {
    "id": "pipeline",
    "title": "Pipeline",
-   "description": "Every item's place in its content type's life cycle. Each content type is a state machine (brief, build, checks, publish, deploy...) with an owner per state. The page shows each type's states as columns with their items, what each item waits on, and the items that have not moved.",
+   "description": "Every item's place in its content type's life cycle. Each content type is a state machine (brief, build, checks, publish, deploy...) with an owner per state and its forward, skip and back transitions. The page draws each machine as a diagram with counts, a kanban and a group × state table grouped by the unit of scale (for example the category), drill-downs 25 items at a time with what each waits on, and a search that shows one item's path.",
    "kind": "template",
    "reads": [
     "dashboard"
