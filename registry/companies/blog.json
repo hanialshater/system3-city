@@ -11,9 +11,9 @@
  "site": "https://www.hani-alshater.com",
  "principles": {
   "source": "PRINCIPLES.md",
-  "followed": 1,
-  "gaps": 8,
-  "manual": 4,
+  "followed": 10,
+  "gaps": 0,
+  "manual": 3,
   "audited": "2026-10-25"
  }
 }
