@@ -1,0 +1,22 @@
+{
+ "v": 1,
+ "id": "shakabuku-labs",
+ "name": "Shakabuku Labs",
+ "owner": "hanialshater",
+ "archetype": "science",
+ "summary": "The founder's research lab: ideas in search, ranking and self-evolving products (RAS, EDP, EDP2, MPDM), each taken to a claim that reproduces from a clean checkout on held-out data, against predictions written before the run. A researcher and an independent reproducer, $25 per reproduced experiment.",
+ "repo": "hanialshater/shakabuku-labs (private)",
+ "hq": null,
+ "joined": "2026-10-25",
+ "research": [
+  "hanialshater/ras",
+  "hanialshater/edp"
+ ],
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 10,
+  "gaps": 0,
+  "manual": 3,
+  "audited": "2026-10-25"
+ }
+}

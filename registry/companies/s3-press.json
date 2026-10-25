@@ -1,0 +1,18 @@
+{
+ "v": 1,
+ "id": "s3-press",
+ "name": "S3 Press",
+ "owner": "hanialshater",
+ "archetype": "corporate",
+ "summary": "The press for the founder's books, System 3: Towards Fluent Autonomy and The Dream That Gave Us Computers: each manuscript taken to a finished edition in the author's own voice, every claim checked by someone other than its editor. Seven roles, one warm writer per chapter, $10 per chapter pass; its releases feed the blog's edition.",
+ "repo": "hanialshater/s3-press (private)",
+ "hq": null,
+ "joined": "2026-10-25",
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 10,
+  "gaps": 0,
+  "manual": 3,
+  "audited": "2026-10-25"
+ }
+}

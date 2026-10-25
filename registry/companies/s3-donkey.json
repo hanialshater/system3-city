@@ -1,0 +1,19 @@
+{
+ "v": 1,
+ "id": "s3-donkey",
+ "name": "S3 Donkey",
+ "owner": "hanialshater",
+ "archetype": "single agent",
+ "summary": "The city's infrastructure company, the workhorse: deploys prepared for the owner's approval, pinned and green CI, HQ snapshot builds, referee hosting and hidden sets, one spend ledger and repository hygiene, so the companies spend their budgets on their work. One strong agent, $5 per infrastructure task; judged by the city check and a held-out drill set of seeded faults.",
+ "repo": "hanialshater/s3-donkey (private)",
+ "hq": null,
+ "joined": "2026-10-25",
+ "logo": "logo.svg",
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 9,
+  "gaps": 0,
+  "manual": 4,
+  "audited": "2026-10-25"
+ }
+}
