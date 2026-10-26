@@ -2,6 +2,12 @@
  "v": 1,
  "skills": [
   {
+   "id": "art-direction",
+   "description": "Design a logo, a building or an illustration that fits the System 3 city (ART.md - true isometric, light from the upper left, three tones per face from a small palette, labels on surfaces, original logos readable at 24 px, subtle reduced-motion-safe motion), and keep a company's own art direction in company/ART.md. Use when a company needs a logo, a building in the city, an illustration or its art direction, and for every visual change, with a screenshot-critique loop.",
+   "path": "skills/art-direction/SKILL.md",
+   "usedBy": []
+  },
+  {
    "id": "artifact-before-account",
    "description": "Evaluate the artifact before reading the maker's account of it, and write your findings before opening their notes. Use for every review, evaluation, fact-check or QA pass.",
    "path": "skills/artifact-before-account/SKILL.md",

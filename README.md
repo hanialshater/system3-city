@@ -22,6 +22,10 @@ all built on one platform (System 3 Meta). This repository is the city's public 
   `operator-trial` skill), and a profile schema with one example marked fictional. It holds no person: no names,
   e-mails or CVs. Applications would go to a private intake that is the founder's decision; none exists yet. The city
   HQ shows it as City › Operators, with each company's open seats read through its own tools;
+- **the city's art direction** (`ART.md`): one illustrated world (true isometric, light from the upper left, three
+  tones per face from a small palette, labels on surfaces, original logos, subtle motion that is safe under reduced
+  motion). Each company keeps its own in `company/ART.md`, from the template in `skills/art-direction/`, whose skill
+  describes the screenshot-critique loop;
 - **shared knowledge** (`knowledge/`): what owners choose to share from their companies' knowledge bases, each entry
   with where it came from and how sure its author was;
 - **the shared catalog** (read, copy, customise: a company copies what it wants into its own repository and changes
