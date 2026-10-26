@@ -1,0 +1,19 @@
+{
+ "v": 1,
+ "id": "s3-guild",
+ "name": "S3 Guild",
+ "owner": "hanialshater",
+ "archetype": "dynamic workflow",
+ "summary": "The city's marketplace for human operators: invite-only, adults only, private profiles and CVs, owners approved by the founder, and the seats the companies keep human read from this registry. One warm builder and two checks (privacy and QA), $15 a feature; judged by its end-to-end suite, a canary scan for personal data and the founder's held-out abuse and privacy cases.",
+ "repo": "hanialshater/s3-guild (private)",
+ "hq": null,
+ "joined": "2026-10-26",
+ "logo": "logo.svg",
+ "principles": {
+  "source": "PRINCIPLES.md",
+  "followed": 10,
+  "gaps": 0,
+  "manual": 3,
+  "audited": "2026-10-26"
+ }
+}
