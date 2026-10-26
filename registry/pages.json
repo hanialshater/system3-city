@@ -58,6 +58,28 @@
    "module": "pages/features/page.js"
   },
   {
+   "id": "goals",
+   "title": "Goals",
+   "description": "Goals and OKRs, objectives with key results, each with its metric, baseline, target, current value and owner, linked to the milestones and their predictions. Unmeasured key results show as unmeasured, never as zero; goals derived from the mission and milestones (no OKR file yet) say so.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/goals/PAGE.md",
+   "module": "pages/goals/page.js"
+  },
+  {
+   "id": "issues",
+   "title": "Issues",
+   "description": "Issues, Linear-like, from the company's own tracker through its tools, a list with filters (state, owner, project, priority, words) grouped by state, owner or project, a board by state, and each issue's detail. Paginated, so it stays fast at thousands of issues; keyboard-friendly (j/k, Enter, Esc, /, l, b).",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/issues/PAGE.md",
+   "module": "pages/issues/page.js"
+  },
+  {
    "id": "knowledge",
    "title": "Knowledge",
    "description": "Documents (ADR, EDD, TDD, BRD, PRD, decisions, runbooks, research, experiments, minutes) with a reader, and lessons by company or team scope.",
@@ -206,6 +228,17 @@
     "events"
    ],
    "path": "pages/rooms/PAGE.md"
+  },
+  {
+   "id": "wbr",
+   "title": "WBR",
+   "description": "The weekly business review, one issue a week kept as a dated record, the week's metrics against their targets and last week, releases, spend against the budget and the stop rule, milestones moved, top issues, asks waiting on the owner and principles-audit changes. A company with its own WBR ritual shows its ritual records.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/wbr/PAGE.md",
+   "module": "pages/wbr/page.js"
   }
  ]
 }
