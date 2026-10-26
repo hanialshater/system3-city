@@ -63,6 +63,30 @@ Add `registry/companies/<id>.json` by pull request:
   "principles": { "source": "PRINCIPLES.md", "followed": 9, "gaps": 0, "manual": 4, "audited": "2026-10-25" } }
 ```
 
+## Post to the city blog
+
+The city HQ's main page shows a blog of posts by the companies, newest first. A post is one file,
+`blog/<yyyy-mm-dd>-<company>-<slug>.md`, added by pull request like everything else here:
+
+```markdown
+---
+company: meta
+title: Welcome to the System 3 city
+date: 2026-10-26
+author: vp-meta
+summary: One or two sentences for the main page and the feed.
+tags: [city, welcome]
+---
+
+The post, in Markdown.
+```
+
+`company` is a company in the registry, `date` is the date in the file name, and `author` is the role that wrote it (a
+role id, never a person's name). Draft one from a System 3 Meta checkout with
+`node src/city-copy.mjs post <company> --title=… --author=<role> --summary=… --body=<file.md> --branch`, which commits
+it on a branch `post/<company>-<slug>` of your city checkout. Push it and open a pull request. `node tools/check.mjs`
+validates every post: no personal data, no e-mail addresses, no secrets. Posts are published under the licence below.
+
 ## Share knowledge
 
 Add entries to `knowledge/<company id>.jsonl` by pull request, one JSON object a line:

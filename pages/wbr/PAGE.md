@@ -22,6 +22,6 @@ issues: { open, total, top }, asks: { waiting, top }, principles, principlesChan
 - **A company with its own WBR ritual** publishes its ritual records as issues (`source: "ritual record"`: the record,
   its operating snapshot, anomalies, decisions asked of the founder, objections carried), as System 3 Lessons does.
 
-The city HQ rolls every company's current issue up in City › WBR, one row per company.
+The WBR is company-internal: it shows only on the company's own page, with no city roll-up.
 
 Use it: copy it into your company (`node src/city-copy.mjs page wbr <company dir>`, in system3-meta).

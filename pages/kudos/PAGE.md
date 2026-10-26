@@ -19,7 +19,8 @@ Thanks from one member, or the owner, to another, for something specific. Each k
 `refs` are records in the company's repository (linked on GitHub when the company's city entry names its `repo`) or
 URLs. The page groups them by recipient or by week. It ranks no one: kudos are not a metric.
 
-The city HQ also shows every company's kudos together (City › Kudos).
+Kudos are company-internal: the city HQ shows them only on each company's own page, never across the city or in its
+news.
 
 Use it: copy it into your company (`node src/city-copy.mjs page kudos <company dir>`, in system3-meta) and customise your
 copy.

@@ -75,7 +75,30 @@ export function check(root) {
     }
   }
   p.push(...checkOperators(root, ids));
+  p.push(...checkPosts(root, ids));
   for (const k of ["roles", "skills", "pages"]) { const f = path.join(root, "registry", `${k}.json`); if (!fs.existsSync(f) || fs.readFileSync(f, "utf8") !== JSON.stringify(reg[k], null, 1) + "\n") p.push(`registry/${k}.json: out of date (run node tools/registry.mjs)`); }
+  return p;
+}
+// the city blog (blog/<yyyy-mm-dd>-<company>-<slug>.md): a company's post, merged by pull request. Its front matter names
+// a company in the registry, a title, the date its file name carries, an author that is a role id (never a person), a
+// summary and tags; its body is not empty; and nothing in it looks like a secret or personal data (e-mails included).
+export function checkPosts(root, ids = new Set()) {
+  const p = [], dir = path.join(root, "blog"); if (!fs.existsSync(dir)) return p;
+  for (const f of fs.readdirSync(dir)) {
+    const at = `blog/${f}`; if (f === "README.md") continue;
+    const m = /^(\d{4}-\d{2}-\d{2})-([a-z0-9][a-z0-9-]*)\.md$/.exec(f);
+    if (!m) { p.push(`${at}: a post's file is blog/<yyyy-mm-dd>-<company>-<slug>.md`); continue; }
+    const raw = fs.readFileSync(path.join(dir, f), "utf8"), fp = frontMatter(raw), fm = fp?.fm;
+    if (SECRET.test(raw)) p.push(`${at}: looks like a secret or personal data (no e-mails, names of private people, keys or tokens)`);
+    if (!fm) { p.push(`${at}: needs front matter between --- lines`); continue; }
+    if (!ids.has(fm.company)) p.push(`${at}: company ${fm.company ?? "(none)"} is not in the registry`);
+    if (fm.date !== m[1]) p.push(`${at}: date must be ${m[1]}, as in the file name`);
+    if (fm.company && !m[2].startsWith(`${fm.company}-`)) p.push(`${at}: the file name is <date>-${fm.company}-<slug>.md`);
+    for (const k of ["title", "summary"]) if (!String(fm[k] ?? "").trim()) p.push(`${at}: ${k} is required`);
+    if (!ID.test(String(fm.author ?? ""))) p.push(`${at}: author is the role that wrote it (a role id such as chief-of-staff), never a person's name`);
+    if (fm.tags != null && !Array.isArray(fm.tags)) p.push(`${at}: tags is a list: [a, b]`);
+    if (!String(fp.body ?? "").trim()) p.push(`${at}: the post has no text`);
+  }
   return p;
 }
 // the operators hub (registry/operators.json): disciplines, seats, the process and a profile schema, never a person.

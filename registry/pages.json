@@ -13,6 +13,17 @@
    "module": "pages/asks/page.js"
   },
   {
+   "id": "blog",
+   "title": "City blog",
+   "description": "The city blog on the city HQ's main page, posts by the companies (system3-city blog/, by pull request), newest first, each with the company's logo and name, a title, its date, the author's role and a summary, a full post view, and each post in City › News and the Atom feed.",
+   "kind": "built-in",
+   "reads": [
+    "city blog/*.md",
+    "city registry"
+   ],
+   "path": "pages/blog/PAGE.md"
+  },
+  {
    "id": "board",
    "title": "Board",
    "description": "Findings, dead ends, hypotheses and decisions, grouped by area or by team, each with its evidence and what would show it wrong.",
@@ -116,7 +127,7 @@
   {
    "id": "news",
    "title": "News",
-   "description": "City news, a dated feed across every company from what the HQ already reads (releases, milestones done, decisions, new companies, features shipped, kudos), with an Atom feed (feed.xml) to subscribe to and a weekly digest (the newsletter) as one Markdown and one HTML issue a week.",
+   "description": "City news, a dated feed across every company from what the HQ already reads (releases, milestones done, decisions, new companies, features shipped, the city blog's posts), with an Atom feed (feed.xml) to subscribe to and a weekly digest (the newsletter) as one Markdown and one HTML issue a week.",
    "kind": "built-in",
    "reads": [
     "dashboard",
