@@ -6,6 +6,47 @@ tones per face from a small palette**, **layered water with reflections**, **sma
 set on surfaces at the same angle**. Each company keeps its own art direction in `company/ART.md`, written from the
 template in `skills/art-direction/`. The HQ's illustration of the city follows this file (system3-meta `hq/ART.md`).
 
+## The world (founder, 2026-10-26)
+
+The founder's words: "floating island cities, on the ground we have a sea and port and containers for loading the right
+things to ship, then on the island cranes for in construction and actual building with many elements. There is
+connection between islands, probably a train also. In the meta we have studio that design each item in isolation then
+together they form the immersive universe of cities. The ship go up to the buildings, we can have fantasy settings";
+"We need the ground (sea, port, islands in the sea) to be furnished"; "The zero company have a demo page to see the
+components"; "We can add some fake islands for now for visual appeal (say under construction)"; "Keep central iconic
+tower in the middle of each city"; "the tower and buildings were good, we wanted more, not change everything"; "No need
+for threejs, let's keep it svg". The founder's own concept sketch is the reference (Sky Cities, 2026-10-26).
+
+- **The universe is made of cities, a city is one owner's** (system3-meta `docs/decisions/2026-10-26-founder-universe.md`).
+  Each city is drawn as one archipelago with its own bounds, so a universe view can place several side by side.
+- **Every city has one central iconic tower in its middle** (the first city's is the Spire). It is the city's landmark:
+  one per city, always at the centre of the city's main island, always the tallest thing there, and different in
+  silhouette from every other city's tower.
+- **Two levels, one rule.** The ground (sea, port, ground islands) is where things are made and moved; the sky
+  (floating islands) is where companies live and run. On a phone the page reads sky first, then down to the sea.
+- **Floating islands are districts:** companies grouped by field, three or four well-filled islands rather than one per
+  company. Islands have earth undersides, waterfalls off their edges, clouds below them, and are joined by bridges or
+  cables and a sky train on a loop.
+- **The ground is furnished**, as rich as the sky: a port (quay, bollards, container stacks, a gantry crane, warehouses,
+  a harbour office, trucks, forklifts, lamps, lane markings, a rail spur), ground islands (beaches, trees, houses,
+  jetties, a park), the lighthouse on its rock, buoys, tugs, a ferry, gulls, foam, and the floating islands' reflections
+  and shadows on the water. A lift tower or a waterfall links ground and sky.
+- **Containers are roles and skills**, labelled from the registry; ships load them at the port and fly up to the islands.
+- **The buildings stay** (redeploy 11's towers, floors, rooftop logo badges and labels): rounds add to them, never
+  replace them.
+- **Every moving thing means something:** a ship lifting off is a company being created, cranes are a company in its
+  first milestone, the train carries news, lit windows are today's activity. Where there is no data, the element stays
+  still.
+- **Open plots** (placeholders) are drawn under construction with a blank sign and never carry a company's name, logo or
+  numbers; they come from data and disappear as real companies arrive. A real company under construction carries its
+  name and badge on the scaffold.
+- **The port's warehouse** is the home of the company lifecycle (saved and frozen companies as crates on its shelves);
+  S3 Guild is the passenger harbour where operators arrive; the Academy is a school on a ground island.
+- **Fantasy is allowed** (flying ships, floating rocks, waterfalls into the sky) as long as the geometry, palette and
+  light rules below hold.
+- **The Studio:** Meta (company zero) keeps a demo page that draws every element alone with its controls; the city is
+  composed only from those elements. Pure SVG, no 3D library.
+
 ## Geometry
 
 - **True isometric.** The x and y axes run at 30° above the horizontal (`x' = (x − y)·cos 30°`, `y' = (x + y)·sin 30°
@@ -91,6 +132,8 @@ lighthouse beam shows. Day and night follow the viewer's light or dark theme.
 | Three tones from one base: `#f4efe5` / `#efe9de` / `#d9d1c2` | Four shades, a gradient, or a different light direction on one face |
 | Label a building on a sign plate at the face's angle | Float a horizontal label above the scene |
 | A crane while a milestone is active, removed when it is done | A crane as decoration |
+| One iconic tower at the centre of each city | Two landmarks competing, or a city with none |
+| An open plot with a blank sign | A made-up company name on a placeholder |
 | An original cat that is a bus | A traced or recognisable film character |
 | Animate the lighthouse beam over 12 s, still under reduced motion | Spin, blink or bounce |
 | Night: darker faces, warm windows | Night: an inverted or grey copy of the day |
