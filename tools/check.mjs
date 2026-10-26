@@ -74,7 +74,36 @@ export function check(root) {
       if (kind === "pages" && fs.existsSync(path.join(dir, d, "page.js")) && SECRET.test(fs.readFileSync(path.join(dir, d, "page.js"), "utf8"))) p.push(`pages/${d}/page.js: looks like a secret or personal data`);
     }
   }
+  p.push(...checkOperators(root, ids));
   for (const k of ["roles", "skills", "pages"]) { const f = path.join(root, "registry", `${k}.json`); if (!fs.existsSync(f) || fs.readFileSync(f, "utf8") !== JSON.stringify(reg[k], null, 1) + "\n") p.push(`registry/${k}.json: out of date (run node tools/registry.mjs)`); }
+  return p;
+}
+// the operators hub (registry/operators.json): disciplines, seats, the process and a profile schema, never a person.
+// No e-mail or secret anywhere in it; its only profile is an example marked fictional; every seat names a discipline
+// it defines and a company in the registry; the intake is the founder's decision, with no form or address in it.
+export const DISCIPLINES = ["engineering", "applied-science", "product", "operations", "editorial", "design", "growth"];
+const URLISH = /https?:\/\/|forms\.|typeform|airtable|calendly|mailto:/i;
+export function checkOperators(root, ids = new Set()) {
+  const p = [], f = path.join(root, "registry", "operators.json"), at = "registry/operators.json";
+  if (!fs.existsSync(f)) return p;
+  const raw = fs.readFileSync(f, "utf8"); let o;
+  try { o = JSON.parse(raw); } catch { return [`${at}: not JSON`]; }
+  if (SECRET.test(raw)) p.push(`${at}: looks like a secret or personal data (no names, e-mails or CVs: the intake is private)`);
+  if (URLISH.test(raw)) p.push(`${at}: names a form, an address or a link (applications go to the founder's private intake, not here)`);
+  if (o.v !== 1) p.push(`${at}: v must be 1`);
+  const ds = new Set((o.disciplines ?? []).map((d) => d.id));
+  for (const d of DISCIPLINES) if (!ds.has(d)) p.push(`${at}: discipline ${d} is missing`);
+  for (const d of o.disciplines ?? []) for (const k of ["title", "summary"]) if (!String(d[k] ?? "").trim()) p.push(`${at}: discipline ${d.id}: ${k} is required`);
+  for (const [i, s] of (o.seats ?? []).entries()) {
+    if (!ds.has(s.discipline)) p.push(`${at}: seats[${i}]: discipline ${s.discipline} is not defined`);
+    if (ids.size && !ids.has(s.company)) p.push(`${at}: seats[${i}]: no company ${s.company} in the registry`);
+    if (s.heldBy != null && !ID.test(String(s.heldBy))) p.push(`${at}: seats[${i}]: heldBy is a role id (e.g. founder), never a person's name`);
+  }
+  for (const [id, k] of Object.entries(o.seatKinds ?? {})) if (!ds.has(k.discipline)) p.push(`${at}: seatKinds.${id}: discipline ${k.discipline} is not defined`);
+  for (const [id, d] of Object.entries(o.parkedDisciplines ?? {})) if (!ds.has(d)) p.push(`${at}: parkedDisciplines.${id}: discipline ${d} is not defined`);
+  if (o.profile?.example && o.profile.example.fictional !== true) p.push(`${at}: profile.example must be marked fictional: true`);
+  for (const k of Object.keys(o.profile ?? {})) if (!["note", "schema", "example"].includes(k)) p.push(`${at}: profile.${k}: only a schema and one fictional example are published`);
+  if (!/founder/i.test(o.intake?.decision ?? "")) p.push(`${at}: intake.decision: where applications go is the founder's decision`);
   return p;
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

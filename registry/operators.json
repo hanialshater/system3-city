@@ -1,0 +1,195 @@
+{
+ "v": 1,
+ "note": "The operators hub: where the city finds and grows the humans who operate and build its companies. It holds disciplines, seats, criteria and the process, never a real person's name, e-mail, CV or profile. The HQ joins it with each company's org, asks and parked roles, read through the company's own tools. tools/check.mjs validates it.",
+ "intake": {
+  "status": "not open",
+  "decision": "the founder's",
+  "how": "Applications would go to a private intake that the founder chooses and runs, outside every public repository and every published snapshot. None exists yet: this registry has no form, no account and no address to write to.",
+  "ask": "system3-meta asks.json A-OPS-1"
+ },
+ "disciplines": [
+  {
+   "id": "engineering",
+   "title": "Engineering",
+   "summary": "Builds and keeps the code the agents ship: the product, its checks, the deploy path.",
+   "inAnAgentCompany": [
+    "Approves each production deploy of a code company (P13), from the release the agents prepared and its checks",
+    "Owns the referee's harness when it is code: the test suite, the judge script, what 'main never gets worse' means",
+    "Reviews a critical change's readiness record (deploys, the event API, auth, user data) when no other engineer can"
+   ],
+   "parkedRoles": ["software-engineer", "engineer"],
+   "criteria": [
+    "Lands a change past the company's referee with its predictions committed first",
+    "Says no to an unapproved deploy, every time",
+    "Leaves the next worker a handoff they can act on"
+   ]
+  },
+  {
+   "id": "applied-science",
+   "title": "Applied science and research",
+   "summary": "Turns questions into claims that reproduce: predictions first, held-out data, an independent check.",
+   "inAnAgentCompany": [
+    "Holds the referee and its held-out sets as evaluation steward (P13: the referee is a human seat); draws the seeds and splits the makers never see",
+    "Judges a run against the predictions committed before it, wrong ones included",
+    "Decides when a headline is withdrawn because it did not reproduce"
+   ],
+   "parkedRoles": ["experiment-developer", "reproducer"],
+   "criteria": [
+    "Writes a prediction with a wrong-if and a tolerance before a run",
+    "Keeps a held-out set held out (never reads it as a maker)",
+    "Reports a wrong prediction as plainly as a right one"
+   ]
+  },
+  {
+   "id": "product",
+   "title": "Product",
+   "summary": "Decides what is worth building and why, and says no to the rest.",
+   "inAnAgentCompany": [
+    "Approves the briefs agents build from (what and why), for a site feature or a new lesson line",
+    "Answers the asks that wait on the owner: priorities, scope, which option",
+    "Approves the org design (P13): an org only for a reason the work gives, few members"
+   ],
+   "parkedRoles": ["product-manager"],
+   "criteria": [
+    "Turns an ask into a decision record with its options and objections",
+    "Cuts scope to fit a cost target with a stop rule",
+    "Can say which principle a design breaks and why"
+   ]
+  },
+  {
+   "id": "operations",
+   "title": "Operations and infrastructure",
+   "summary": "Keeps every company's infrastructure boring: deploys, budgets, CI, spend, hygiene.",
+   "inAnAgentCompany": [
+    "Approves budgets and each spend line (P13), and pauses work over twice its cost target",
+    "Approves each deploy, preview or production, after seeing what will ship",
+    "Owns incidents' correction-of-error actions and the drills that test the runbooks"
+   ],
+   "parkedRoles": [],
+   "criteria": [
+    "Approves or refuses a prepared deploy from its evidence, not its description",
+    "Reads a spend ledger and stops a run at its stop rule",
+    "Runs a drill without seeing its answers first"
+   ]
+  },
+  {
+   "id": "editorial",
+   "title": "Editorial",
+   "summary": "Keeps the voice the author's: every edit a proposal, every fact checked by someone else.",
+   "inAnAgentCompany": [
+    "Accepts, declines or rewrites each proposed edit as the author (the baseline text changes only with the author's yes)",
+    "Spot-checks translations and decides on a new locale",
+    "Approves each release of a book or a post, recorded with the author's words"
+   ],
+   "parkedRoles": ["copy-editor", "translator"],
+   "criteria": [
+    "Decides on a blind sample of edits before reading the editor's account",
+    "Keeps objections with the decision when overriding an editor",
+    "Never lets a fact through that its own writer checked"
+   ]
+  },
+  {
+   "id": "design",
+   "title": "Design",
+   "summary": "Makes the work legible: art, covers, interfaces, logos, at phone width and in the dark.",
+   "inAnAgentCompany": [
+    "Commissions and accepts art and covers (the agents prepare briefs; a human accepts the result)",
+    "Owns a company's visual standard: its design system, its logo, its accessibility bar",
+    "Judges interfaces as a user would, artifact before account"
+   ],
+   "parkedRoles": ["art-director", "designer"],
+   "criteria": [
+    "Accepts or rejects a design against acceptance checks written before it was drawn",
+    "Checks light and dark and a 390-pixel phone before saying yes",
+    "Knows what may not be copied (trademarks, existing characters)"
+   ]
+  },
+  {
+   "id": "growth",
+   "title": "Growth",
+   "summary": "Finds the readers, learners and users, without buying them or misleading them.",
+   "inAnAgentCompany": [
+    "Approves a launch or publication plan with a date (the agents draft it)",
+    "Decides what is shared publicly, and when, including city news and newsletters",
+    "Owns the experiments that measure reach, with predictions first"
+   ],
+   "parkedRoles": ["marketing-strategist", "growth"],
+   "criteria": [
+    "Writes a launch's predictions before it goes out, and reads them after",
+    "Never publishes a claim the referee has not passed",
+    "Keeps personal data out of every public channel"
+   ]
+  }
+ ],
+ "seatKinds": {
+  "founder": { "discipline": "operations", "title": "Owner (CEO)", "principle": "P13", "what": "approves every deploy, every spend and the org design; answers the asks that wait on the owner", "heldBy": "founder" },
+  "evaluation-steward": { "discipline": "applied-science", "title": "Evaluation steward", "principle": "P13", "what": "owns the referee and its held-out sets; draws what the makers never see" }
+ },
+ "parkedDisciplines": {
+  "experiment-developer": "applied-science",
+  "reproducer": "applied-science",
+  "art-director": "design",
+  "designer": "design",
+  "marketing-strategist": "growth",
+  "software-engineer": "engineering",
+  "engineer": "engineering",
+  "copy-editor": "editorial",
+  "translator": "editorial"
+ },
+ "seats": [
+  { "company": "s3-donkey", "role": "evaluation-steward", "title": "Evaluation steward (holds the drill set)", "discipline": "operations", "principle": "P13", "what": "holds the held-out drill set of seeded faults outside the repository and judges each milestone against it", "heldBy": "founder" },
+  { "company": "shakabuku-labs", "role": "evaluation-steward", "title": "Evaluation steward (holds the held-out seeds and splits)", "discipline": "applied-science", "principle": "P13", "what": "draws the seeds, splits and scenarios each claim is reproduced on, and keeps them outside every repository", "heldBy": "founder" },
+  { "company": "s3-press", "role": "evaluation-steward", "title": "Evaluation steward (the blind sample)", "discipline": "editorial", "principle": "P13", "what": "draws the blind sample of edits the founder decides on before reading the writer's account", "heldBy": "founder" },
+  { "company": "s3-press", "role": "author", "title": "Author (accepts, declines or rewrites every edit)", "discipline": "editorial", "principle": "P13", "what": "the voice is the author's: every edit is a proposal; each release is approved with the author's words", "heldBy": "founder" },
+  { "company": "blog", "role": "author", "title": "Author (approves posts, spot-checks translations, approves deploys)", "discipline": "editorial", "principle": "P13", "what": "writes and decides; edits are proposals; each deploy needs the author's approval", "heldBy": "founder" },
+  { "company": "system-3-company", "role": "launch-approver", "title": "Founder approvals (deploys and launches)", "discipline": "product", "principle": "P13", "what": "approves each deploy and each lesson launch; ratifies constitutional amendments", "heldBy": "founder" },
+  { "company": "quantaplan", "role": "deploy-approver", "title": "Owner approvals (production deploys)", "discipline": "engineering", "principle": "P13", "what": "approves each production deploy of the web app and records it in its release log", "heldBy": "founder" },
+  { "company": "sqlite", "role": "referee-owner", "title": "Referee owner (the hidden score)", "discipline": "engineering", "principle": "P13", "what": "keeps the hidden part of SQLite's own tests the engine is judged on; approves spending", "heldBy": "founder" },
+  { "company": "cc", "role": "referee-owner", "title": "Referee owner (correct before fast)", "discipline": "engineering", "principle": "P13", "what": "keeps the referee that compiles Lua and SQLite; approves spending and deploys", "heldBy": "founder" },
+  { "company": "meta", "role": "org-designer", "title": "City founder (org designs and the platform's deploys)", "discipline": "product", "principle": "P13", "what": "approves every company's org design and every city HQ deploy", "heldBy": "founder" }
+ ],
+ "process": {
+  "title": "How the city judges a human operator",
+  "summary": "The same principles as for agents: a real task, a referee chosen before the work, predictions first, a cost target with a stop rule, and a check by someone other than the candidate.",
+  "steps": [
+   "Pick a seat and a trial task the seat really does (approve or refuse a prepared deploy; decide a blind sample of edits; judge a run against its predictions; set a budget line and a stop rule).",
+   "Write the referee before the trial: what a good outcome is, measured how, by whom. The candidate sees the task, not the answers.",
+   "The candidate commits predictions first: what they expect, and what would show them wrong.",
+   "Set a cost target (hours) with a stop rule; work over twice the target stops and is reviewed.",
+   "Run the trial on a held-out case the candidate has not seen, inside a sandbox with no production access and no secrets.",
+   "Someone other than the candidate checks the result against the referee, artifact before account, and writes it up with its objections.",
+   "The founder decides, as with any seat change (P13), in a decision record kept in the private intake, not in a public repository."
+  ],
+  "skill": "operator-trial",
+  "never": [
+   "No trial touches production, real users' data or a secret",
+   "No personal data in any repository or snapshot: names, e-mails, CVs and results stay in the founder's private intake",
+   "No unpaid production work disguised as a trial"
+  ]
+ },
+ "profile": {
+  "note": "The shape an operator's profile would take inside the private intake. Only the fictional example below is published; real profiles never are.",
+  "schema": {
+   "id": "a handle chosen by the intake, never a real name",
+   "disciplines": "one or more discipline ids",
+   "seats": "the seat kinds they would fill (e.g. deploy approver, evaluation steward)",
+   "trials": "[{ seat, task, predictions, referee, result: passed|failed|withdrawn, checkedBy: a role }]",
+   "growth": "what they want to learn next, as a discipline and a seat",
+   "availability": "hours a week",
+   "consent": "what of this they agreed to share, and with whom"
+  },
+  "example": {
+   "fictional": true,
+   "id": "op-example-otter",
+   "label": "A fictional operator, to show the shape. Not a real person.",
+   "disciplines": ["operations", "engineering"],
+   "seats": ["deploy approver"],
+   "trials": [
+    { "seat": "deploy approver", "task": "approve or refuse three prepared deploys, one of them seeded with a failing check", "predictions": "refuses the seeded one; approves two within 10 minutes each", "referee": "the seeded fault list, held by the evaluation steward", "result": "passed", "checkedBy": "evaluation-steward" }
+   ],
+   "growth": "applied-science: hold a held-out set for one milestone",
+   "availability": "4 hours a week",
+   "consent": "shared inside the intake only"
+  }
+ }
+}

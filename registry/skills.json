@@ -64,6 +64,12 @@
    ]
   },
   {
+   "id": "operator-trial",
+   "description": "Judge a human for a seat in an agent company (deploy approver, evaluation steward, author, budget holder) by a real trial task, with a referee and predictions committed first, a cost target with a stop rule, and a check by someone other than the candidate. Use when a company wants a human operator, or a human wants a seat.",
+   "path": "skills/operator-trial/SKILL.md",
+   "usedBy": []
+  },
+  {
    "id": "org-in-proportion",
    "description": "Design or review an organisation of agents so it is no bigger and no more fragmented than its work needs - the single-agent baseline first, an org only for a stated reason, one warm maker per item with independent checks at the end, few members, and a cost target with a stop rule. Use when proposing a company, a flow or a crew, when adding a role, and in every org health review.",
    "path": "skills/org-in-proportion/SKILL.md",

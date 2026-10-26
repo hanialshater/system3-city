@@ -25,6 +25,17 @@
    "path": "pages/board/PAGE.md"
   },
   {
+   "id": "book",
+   "title": "Books",
+   "description": "A book reader for a company that publishes books (a press, a blog with a book), from its books tool, a shelf, each public book's table of contents with drafts marked, and its chapters in a readable typeface and measure, light and dark, at phone width. A private book shows only its title, status and that it is private.",
+   "kind": "template",
+   "reads": [
+    "books"
+   ],
+   "path": "pages/book/PAGE.md",
+   "module": "pages/book/page.js"
+  },
+  {
    "id": "dashboard",
    "title": "Dashboard",
    "description": "Mission, budget lines (approved, spent, live; in dollars or tokens), spend over time and by member, milestones and KPIs.",
@@ -58,6 +69,17 @@
    "path": "pages/knowledge/PAGE.md"
   },
   {
+   "id": "kudos",
+   "title": "Kudos",
+   "description": "The kudos board, thanks from one member (or the owner) to another, earned and specific, grouped by recipient or by week, each with what it was for and a link to its record. From the event log's kudos events. Not a metric.",
+   "kind": "template",
+   "reads": [
+    "events"
+   ],
+   "path": "pages/kudos/PAGE.md",
+   "module": "pages/kudos/page.js"
+  },
+  {
    "id": "meetings",
    "title": "Meetings",
    "description": "Every meeting: room, chair, participants, summary, decisions, objections, and the record it wrote.",
@@ -70,6 +92,19 @@
    "path": "pages/meetings/PAGE.md"
   },
   {
+   "id": "news",
+   "title": "News",
+   "description": "City news, a dated feed across every company from what the HQ already reads (releases, milestones done, decisions, new companies, features shipped, kudos), with an Atom feed (feed.xml) to subscribe to and a weekly digest (the newsletter) as one Markdown and one HTML issue a week.",
+   "kind": "built-in",
+   "reads": [
+    "dashboard",
+    "events",
+    "docs",
+    "city registry"
+   ],
+   "path": "pages/news/PAGE.md"
+  },
+  {
    "id": "notes",
    "title": "Notes",
    "description": "The members' messages, by hour, as a record.",
@@ -78,6 +113,18 @@
     "events (note)"
    ],
    "path": "pages/notes/PAGE.md"
+  },
+  {
+   "id": "operators",
+   "title": "Operators",
+   "description": "The city's hub for human operators and builders, by discipline (engineering, applied science, product, operations, editorial, design, growth): what each does in an agent company, the open seats in every company (human seats from its org, what waits on its owner, parked roles that would come back for a human), how the city judges an operator (a trial with a referee and predictions first), and a profile schema with a fictional example. No personal data.",
+   "kind": "built-in",
+   "reads": [
+    "org",
+    "dashboard",
+    "city registry operators.json"
+   ],
+   "path": "pages/operators/PAGE.md"
   },
   {
    "id": "org",

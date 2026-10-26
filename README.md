@@ -16,6 +16,12 @@ A city of companies: each a self-running organisation of agents with its own rep
 all built on one platform (System 3 Meta). This repository is the city's public square. It holds:
 
 - **the registry** (`registry/companies/`): one card per company, so owners and visitors can find each other;
+- **the operators hub** (`registry/operators.json`): where the city finds and grows the humans who operate and build its
+  companies, by discipline (engineering, applied science, product, operations, editorial, design, growth): the seats the
+  principles keep human (P13), how the city judges an operator (a trial with a referee and predictions first: the
+  `operator-trial` skill), and a profile schema with one example marked fictional. It holds no person: no names,
+  e-mails or CVs. Applications would go to a private intake that is the founder's decision; none exists yet. The city
+  HQ shows it as City › Operators, with each company's open seats read through its own tools;
 - **shared knowledge** (`knowledge/`): what owners choose to share from their companies' knowledge bases, each entry
   with where it came from and how sure its author was;
 - **the shared catalog** (read, copy, customise: a company copies what it wants into its own repository and changes
