@@ -18,15 +18,22 @@ tower in the middle of each city"; "the tower and buildings were good, we wanted
 for threejs, let's keep it svg". The founder's own concept sketch is the reference (Sky Cities, 2026-10-26).
 
 - **The universe is made of cities, a city is one owner's** (system3-meta `docs/decisions/2026-10-26-founder-universe.md`).
-  Each city is drawn as one archipelago with its own bounds, so a universe view can place several side by side.
+  **A city is one large floating island** (founder, 2026-10-26: "island can be bigger and more spacious, also all mine
+  including tower in one island, others are fake with other themes (placeholder for other people later)"). All of an
+  owner's companies and their iconic tower stand on that one island, with room between buildings: plazas, parks,
+  streets, water. Other floating islands are other people's cities.
 - **Every city has one central iconic tower in its middle** (the first city's is the Spire). It is the city's landmark:
   one per city, always at the centre of the city's main island, always the tallest thing there, and different in
   silhouette from every other city's tower.
 - **Two levels, one rule.** The ground (sea, port, ground islands) is where things are made and moved; the sky
   (floating islands) is where companies live and run. On a phone the page reads sky first, then down to the sea.
-- **Floating islands are districts:** companies grouped by field, three or four well-filled islands rather than one per
-  company. Islands have earth undersides, waterfalls off their edges, clouds below them, and are joined by bridges or
-  cables and a sky train on a loop.
+- **Districts are quarters on the city's island**, not separate islands: companies grouped by field, each quarter with
+  its own street grid and a name set on the ground. Islands have earth undersides, waterfalls off their edges and clouds
+  below them; the sky train loops through the city's quarters, and cables or bridges join the city to the others.
+- **Placeholder cities.** Until other owners arrive, the other floating islands are placeholder cities, each in its own
+  theme (for example a desert city, a snow city, a garden city, a canal city) with its own iconic-tower silhouette. Like
+  open plots they never carry a person's or company's name, logo or numbers: a blank sign reading "Future city". They
+  come from data and give way to real cities.
 - **The ground is furnished**, as rich as the sky: a port (quay, bollards, container stacks, a gantry crane, warehouses,
   a harbour office, trucks, forklifts, lamps, lane markings, a rail spur), ground islands (beaches, trees, houses,
   jetties, a park), the lighthouse on its rock, buoys, tugs, a ferry, gulls, foam, and the floating islands' reflections
