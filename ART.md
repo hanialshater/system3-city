@@ -35,8 +35,12 @@ for threejs, let's keep it svg". The founder's own concept sketch is the referen
 - **The buildings stay** (redeploy 11's towers, floors, rooftop logo badges and labels): rounds add to them, never
   replace them.
 - **Every moving thing means something:** a ship lifting off is a company being created, cranes are a company in its
-  first milestone, the train carries news, lit windows are today's activity. Where there is no data, the element stays
-  still.
+  first milestone, the train carries news, lit windows are today's activity.
+- **Plus a few elements for the vibes** (founder, 2026-10-26: "Every moving thing means something yes but for decor I
+  will add few elements for the vibes"). Ambient motion is allowed for atmosphere only: gulls, drifting clouds, waves
+  and foam, waterfalls, the lighthouse beam, birds, balloons, small boats bobbing. They are listed as `ambient` in the
+  Studio, never take a shape the data uses (no ship lifting off, no crane, no lit-window change, no train) so nobody
+  reads them as news, stop under reduced motion, and stay a small share of what moves. The founder adds to this list.
 - **Open plots** (placeholders) are drawn under construction with a blank sign and never carry a company's name, logo or
   numbers; they come from data and disappear as real companies arrive. A real company under construction carries its
   name and badge on the scaffold.
@@ -132,6 +136,7 @@ lighthouse beam shows. Day and night follow the viewer's light or dark theme.
 | Three tones from one base: `#f4efe5` / `#efe9de` / `#d9d1c2` | Four shades, a gradient, or a different light direction on one face |
 | Label a building on a sign plate at the face's angle | Float a horizontal label above the scene |
 | A crane while a milestone is active, removed when it is done | A crane as decoration |
+| Gulls, clouds and waves moving for the vibes | A decorative ship lifting off, which reads as a new company |
 | One iconic tower at the centre of each city | Two landmarks competing, or a city with none |
 | An open plot with a blank sign | A made-up company name on a placeholder |
 | An original cat that is a bus | A traced or recognisable film character |
