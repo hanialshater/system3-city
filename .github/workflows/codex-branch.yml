@@ -14,7 +14,11 @@ jobs:
         with: { fetch-depth: 0, ref: "${{ github.event.pull_request.head.sha }}" }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: node codex-branch-check.mjs . "origin/$BASE"
+      # The base branch's copy of the check runs, never the pull request's own, so a branch cannot edit the check to pass;
+      # only the pull request that first adds it (the base has no copy yet) runs its own.
+      - run: |
+          git show "origin/$BASE:codex-branch-check.mjs" > "$RUNNER_TEMP/branch-check.mjs" 2>/dev/null || cp "codex-branch-check.mjs" "$RUNNER_TEMP/branch-check.mjs"
+          node "$RUNNER_TEMP/branch-check.mjs" . "origin/$BASE"
         env:
           BASE: ${{ github.base_ref }}
           BRANCH: ${{ github.head_ref }}
