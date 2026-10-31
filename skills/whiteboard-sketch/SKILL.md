@@ -53,6 +53,28 @@ on an isometric whiteboard in the city, where it composes with every other eleme
 6. Store it with the record it explains, such as a design doc or a meeting's minutes, so the next session finds both
    together.
 
+## In a meeting: the board
+
+Every meeting has a board, an infinite canvas that its members draw on while they meet. Each sketch is one post.
+
+1. **Name the board** for the meeting: lower-case words joined by dashes, for example `2026-10-31-design-review`.
+   Everyone in the meeting uses the same name.
+2. **Post each sketch as you draw it**:
+   - in a crew: `crew sketch --board=<id> --file=<sketch.json> [--at=x,y] [--caption="what it shows"]`;
+   - in a kernel meeting: `meeting board --id=<MTG> --by=<you> --section=<topic> --sketch=<sketch.json>`.
+
+   A post that does not draw as written is refused, and nothing is written. Read the reason, fix the sketch and post
+   again.
+3. **Let the board lay itself out.** Without `--at`, sketches flow in the order they were posted, which is usually
+   right. Use `--at=x,y` only to put a sketch next to the one it answers, for example a v2 beside its v1. Leave a gap
+   of about 60 units.
+4. **Redraw rather than edit.** A changed design is a new post (title it "…, v2"), so the board keeps how the thinking
+   moved.
+5. **Name the board in the minutes**: `crew minutes --title=… --text=… --board=<id>`. The minutes then link to the
+   board.
+6. **To see the boards:** `crew boards` lists them. The HQ shows them under the company's Meetings, each one opening
+   as a canvas you drag, scroll and zoom, with replay.
+
 Never put personal data or secrets on a board. A sketch is published wherever its page is.
 
 Examples: `SkyKit.SKETCHES` (`architecture`, `system-design`, `concept`, `wireframe`). The city HQ shows them under
