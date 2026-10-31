@@ -1,7 +1,7 @@
 {
  "v": 1,
- "id": "system-3-company",
- "name": "System 3 Company",
+ "id": "system3-lessons",
+ "name": "System 3 Lessons",
  "owner": "hanialshater",
  "archetype": "corporate",
  "summary": "Makes 60-second interactive lessons (predict, explore, reveal) across many subjects, every factual sentence a checked claim.",
@@ -13,6 +13,6 @@
   "followed": 9,
   "gaps": 4,
   "manual": 0,
-  "audited": "2026-10-25"
+  "audited": "2026-10-31"
  }
 }
