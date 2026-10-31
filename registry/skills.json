@@ -102,6 +102,12 @@
     "area-engineer",
     "sweeper"
    ]
+  },
+  {
+   "id": "whiteboard-sketch",
+   "description": "Illustrate an architecture, a system design, a conceptual sketch or a wireframe on the city's whiteboard, written as data (items and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.",
+   "path": "skills/whiteboard-sketch/SKILL.md",
+   "usedBy": []
   }
  ]
 }

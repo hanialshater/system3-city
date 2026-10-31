@@ -241,6 +241,16 @@
    "path": "pages/rooms/PAGE.md"
   },
   {
+   "id": "tools",
+   "title": "Tools",
+   "description": "Everything System 3 Meta provides to the city's companies on one page. It lists the command-line tools, the HQ's views, routes, scripts and pages, the apps, and the drawing kit with its whiteboard. Each entry has what it does, how to run it, the feature it belongs to and a link to its source. The list comes from Meta's code, never by hand.",
+   "kind": "built-in",
+   "reads": [
+    "Meta's toolbox (src/toolbox.mjs)"
+   ],
+   "path": "pages/tools/PAGE.md"
+  },
+  {
    "id": "wbr",
    "title": "WBR",
    "description": "The weekly business review, one issue a week kept as a dated record, the week's metrics against their targets and last week, releases, spend against the budget and the stop rule, milestones moved, top issues, asks waiting on the owner and principles-audit changes. A company with its own WBR ritual shows its ritual records.",
