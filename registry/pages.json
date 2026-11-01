@@ -58,6 +58,17 @@
    "path": "pages/dashboard/PAGE.md"
   },
   {
+   "id": "docs",
+   "title": "Docs",
+   "description": "How the company works now (the handbook and its living docs by subject), what comes next (the operational plan and the architecture plan, with their horizons) and how the architecture evolved (dated snapshots), apart from the records that explain how it got here.",
+   "kind": "template",
+   "reads": [
+    "docs"
+   ],
+   "path": "pages/docs/PAGE.md",
+   "module": "pages/docs/page.js"
+  },
+  {
    "id": "features",
    "title": "Features",
    "description": "The company's features list. Every feature with its status (live, building, planned, retired), since when, its owner, a summary and its links, grouped by status.",
@@ -67,6 +78,17 @@
    ],
    "path": "pages/features/PAGE.md",
    "module": "pages/features/page.js"
+  },
+  {
+   "id": "flows",
+   "title": "Flows",
+   "description": "The company's checklists for each kind of work (feature, incident, model, new idea, data), with what to write, who checks it, what to register and which living docs to update, and every piece of work with the steps it still misses.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/flows/PAGE.md",
+   "module": "pages/flows/page.js"
   },
   {
    "id": "goals",
@@ -218,6 +240,28 @@
    "module": "pages/principles/page.js"
   },
   {
+   "id": "projects",
+   "title": "Projects",
+   "description": "The company's project register, open projects first and worst health first, each with its owner, status, due date, what happens next, what blocks it and why its health is what it is. Health is checked by code, not only asserted, so a past-due or stale project cannot look green.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/projects/PAGE.md",
+   "module": "pages/projects/page.js"
+  },
+  {
+   "id": "radar",
+   "title": "Tech radar",
+   "description": "Three radars in the manner of the Zalando and Thoughtworks tech radars (tech stack; org and techniques; AI), each with four quadrants and four rings (adopt, trial, assess, hold), numbered blips that never overlap, and a legend with why, the ring history and what replaces a hold.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/radar/PAGE.md",
+   "module": "pages/radar/page.js"
+  },
+  {
    "id": "releases",
    "title": "Release log",
    "description": "The company's release log, newest first. Each release has its date, title, notes, the commit and who approved it. Every deploy needs the owner's approval (PRINCIPLES.md P13).",
@@ -227,6 +271,17 @@
    ],
    "path": "pages/releases/PAGE.md",
    "module": "pages/releases/page.js"
+  },
+  {
+   "id": "rituals",
+   "title": "Rituals",
+   "description": "When each ritual is due, on two clocks. The agents' clock fires on work and is never overdue while a company is idle; the human clock fires on calendar slots in the founder's time zone. They meet at the weekly review, which lists every agent record since it was last held, so the human reads the agents' work once a week.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/rituals/PAGE.md",
+   "module": "pages/rituals/page.js"
   },
   {
    "id": "rooms",
