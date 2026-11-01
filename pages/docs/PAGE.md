@@ -18,6 +18,10 @@ Reads the documents contract (System 3 Meta's `src/docs.mjs`, the company's `doc
 | `snapshot` | `kind: snapshot · subject: architecture · date: 2026-11-01` | a timeline |
 | `record` | anything else (EDD, ADR, decision, …) | counted; listed on the Knowledge page |
 
+Visuals: each doc's `diagrams` (Mermaid blocks in the doc) are drawn on the one common whiteboard (`SkyKit.sketchSvg`)
+when the HQ has the whiteboard kit, and shown as Mermaid text otherwise. Plans show theirs inline; the snapshot
+timeline shows each snapshot's first diagram, so the architecture's evolution can be seen.
+
 The guideline is system3-meta `docs/product/DOCS.md`, the templates are `templates/docs/`, and the check is
 `node src/docs.mjs <root> --check`.
 
