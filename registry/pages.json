@@ -218,6 +218,17 @@
    "module": "pages/principles/page.js"
   },
   {
+   "id": "projects",
+   "title": "Projects",
+   "description": "The company's project register, open projects first and worst health first, each with its owner, status, due date, what happens next, what blocks it and why its health is what it is. Health is checked by code, not only asserted, so a past-due or stale project cannot look green.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/projects/PAGE.md",
+   "module": "pages/projects/page.js"
+  },
+  {
    "id": "releases",
    "title": "Release log",
    "description": "The company's release log, newest first. Each release has its date, title, notes, the commit and who approved it. Every deploy needs the owner's approval (PRINCIPLES.md P13).",
