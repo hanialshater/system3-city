@@ -240,6 +240,17 @@
    "module": "pages/releases/page.js"
   },
   {
+   "id": "rituals",
+   "title": "Rituals",
+   "description": "When each ritual is due, on two clocks. The agents' clock fires on work and is never overdue while a company is idle; the human clock fires on calendar slots in the founder's time zone. They meet at the weekly review, which lists every agent record since it was last held, so the human reads the agents' work once a week.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/rituals/PAGE.md",
+   "module": "pages/rituals/page.js"
+  },
+  {
    "id": "rooms",
    "title": "Rooms",
    "description": "The building: fixed floors and rooms, people at their desks, in meetings (with who is in them) or in the garden; replay with the activity beside it.",
