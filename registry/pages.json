@@ -253,7 +253,7 @@
   {
    "id": "radar",
    "title": "Tech radar",
-   "description": "The technology the company trusts, by quadrant (languages and frameworks, tools, platforms, techniques) and ring (adopt, trial, assess, hold), each entry with why, when it was last reviewed, and what replaces it when it is on hold.",
+   "description": "Three radars in the manner of the Zalando and Thoughtworks tech radars (tech stack; org and techniques; AI), each with four quadrants and four rings (adopt, trial, assess, hold), numbered blips that never overlap, and a legend with why, the ring history and what replaces a hold.",
    "kind": "template",
    "reads": [
     "dashboard"

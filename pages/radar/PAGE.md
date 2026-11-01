@@ -1,7 +1,7 @@
 ---
 name: radar
 title: Tech radar
-description: The technology the company trusts, by quadrant (languages and frameworks, tools, platforms, techniques) and ring (adopt, trial, assess, hold), each entry with why, when it was last reviewed, and what replaces it when it is on hold.
+description: Three radars in the manner of the Zalando and Thoughtworks tech radars (tech stack; org and techniques; AI), each with four quadrants and four rings (adopt, trial, assess, hold), numbered blips that never overlap, and a legend with why, the ring history and what replaces a hold.
 kind: template
 reads: [dashboard]
 from: System 3 city
@@ -19,7 +19,7 @@ The dashboard contract's `radar` (additive, 2026-11-01), from System 3 Meta's `s
   "problems": [] }
 ```
 
-A company keeps `radar.json` beside `company.json` (or a `radarCmd`). Each entry is reviewed at least every 180 days,
+A company keeps `radar.json` beside `company.json` (or a `radarCmd`). Version 2 holds `radars: [{ id, title, quadrants?, entries }]` (defaults: tech = languages-frameworks, tools, platforms, data; org = engineering, process, structure, governance; ai = models, agents, practices, evaluation), and the view keeps the flat `entries` beside `radars`. Moving an entry between rings follows the radar flow (system3-meta templates/flows.json). Each entry is reviewed at least every 180 days,
 and a hold says what replaces it. New dependencies still need a decision record; the radar shows where that decision
 landed.
 
