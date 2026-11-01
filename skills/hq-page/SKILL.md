@@ -17,6 +17,10 @@ A page is an ES module that exports `render(ctx)` and returns HTML. The HQ calls
 | `company` | the company's city card |
 | `esc`, `time`, `pct` | helpers. Always escape text with `esc` |
 
+A page runs in a sandbox: a frame with its own opaque origin, given its module and `ctx` by message (Meta's starter HQ,
+since 2026-11-01). It has the HQ's styles and the whiteboard kit (`SkyKit`). It cannot reach the HQ's page, storage or
+API. The one thing it may ask of the HQ is `openDoc(n)` (open one of the company's documents).
+
 Rules:
 - Read only `ctx`. Never fetch a company's files: the HQ reads companies through their tools.
 - No dependencies, no network, no storage. Pages also run in the static build.
