@@ -71,8 +71,8 @@ function act(m, ui, what, a) {
 // ------------------------------------------------------------ the page
 function draw(m, ui, esc) {
   const T = m.types[ui.t], total = m.all.length, stale = m.all.filter((x) => x.stale).length;
-  const tabs = `<div class="tabs" role="tablist">${VIEWS.map(([v, label], i) => `<button class="tab${ui.view === v ? " on" : ""}" role="tab" aria-selected="${ui.view === v}" onclick="__hqPipeline.act('view',${i})">${label}</button>`).join("")}</div>`;
-  const typePills = ui.view === "search" || m.types.length < 2 ? "" : `<div class="filters">${m.types.map((t, i) => `<button class="pill${i === ui.t ? " on" : ""}" onclick="__hqPipeline.act('type',${i})">${esc(t.title)} <span class="k">${t.xs.length}</span></button>`).join("")}</div>`;
+  const tabs = `<div class="tabs" role="tablist">${VIEWS.map(([v, label], i) => `<button class="tab${ui.view === v ? " on" : ""}" role="tab" aria-selected="${ui.view === v}" onclick="__hqPipeline.act('view',${esc(JSON.stringify(i))})">${label}</button>`).join("")}</div>`;
+  const typePills = ui.view === "search" || m.types.length < 2 ? "" : `<div class="filters">${m.types.map((t, i) => `<button class="pill${i === ui.t ? " on" : ""}" onclick="__hqPipeline.act('type',${esc(JSON.stringify(i))})">${esc(t.title)} <span class="k">${t.xs.length}</span></button>`).join("")}</div>`;
   const body = ui.view === "kanban" ? kanban(m, T, ui, esc) : ui.view === "groups" ? table(m, T, ui, esc) : ui.view === "search" ? search(m, ui, esc) : machine(m, T, ui, esc);
   const drill = ui.sel && ui.view !== "search" && ui.view !== "kanban" ? drilldown(m, T, ui, esc) : "";
   return `<h1>Pipeline</h1><div class="sub1">${m.types.length} content type${m.types.length === 1 ? "" : "s"} · ${total} items · ${stale} not moved in ${m.stale}+ days · grouped by ${esc(m.groupBy)}</div>${tabs}${typePills}${body}${drill}`;
@@ -112,7 +112,7 @@ function machine(m, T, ui, esc) {
   const node = (s, si) => {
     const full = String(s.title ?? s.id), br = full.indexOf(" ("), head = br > 0 ? full.slice(0, br) : full, paren = br > 0 ? full.slice(br + 1) : "";
     const p = pos[s.id], c = T.c[s.id] ?? { n: 0, stale: 0 }, on = ui.sel && ui.sel.s === s.id && ui.sel.g == null, kind = KIND[s.kind] ?? "other";
-    return `<g class="pl-n pl-k-${kind}${on ? " on" : ""}" tabindex="0" role="button" onclick="__hqPipeline.act('sel',${si},-1,-1)" onkeydown="if(event.key==='Enter')__hqPipeline.act('sel',${si},-1,-1)"><title>${esc(`${s.title ?? s.id} · ${s.owner ?? "no owner"} · ${s.kind ?? ""}${s.what ? `\n${s.what}` : ""}\n${c.n} items${c.stale ? `, ${c.stale} stale` : ""}`)}</title>
+    return `<g class="pl-n pl-k-${kind}${on ? " on" : ""}" tabindex="0" role="button" onclick="__hqPipeline.act('sel',${esc(JSON.stringify(si))},-1,-1)" onkeydown="if(event.key==='Enter')__hqPipeline.act('sel',${esc(JSON.stringify(si))},-1,-1)"><title>${esc(`${s.title ?? s.id} · ${s.owner ?? "no owner"} · ${s.kind ?? ""}${s.what ? `\n${s.what}` : ""}\n${c.n} items${c.stale ? `, ${c.stale} stale` : ""}`)}</title>
       <rect x="${p.x}" y="${p.y}" width="${W0}" height="${H0}" rx="10" class="pl-box"/><rect x="${p.x}" y="${p.y}" width="5" height="${H0}" rx="2" class="pl-strip"/>
       <text x="${p.x + 13}" y="${p.y + 19}" class="pl-tt">${esc(cut(head, 16))}</text>${paren ? `<text x="${p.x + 13}" y="${p.y + 32}" class="pl-pa">${esc(cut(paren, 23))}</text>` : ""}
       <text x="${p.x + 13}" y="${p.y + (paren ? 47 : 37)}" class="pl-ow">${esc(cut(s.owner ?? "", 19))}</text>
@@ -133,12 +133,12 @@ const title = (T, id) => T.states.find((s) => s.id === id)?.title ?? id;
 function table(m, T, ui, esc) {
   if (!T.groups.length) return `<div class="empty">No items of this type.</div>`;
   const cell = (c, si, gi, sgi) => { const x = c[T.ids[si]] ?? { n: 0, stale: 0 }, on = isSel(ui, T, si, gi, sgi);
-    return x.n ? `<td class="pl-cell${on ? " on" : ""}" onclick="__hqPipeline.act('sel',${si},${gi},${sgi})" title="${x.n} items${x.stale ? `, ${x.stale} stale` : ""}"><b>${x.n}</b>${x.stale ? `<span class="pl-st">${x.stale}</span>` : ""}</td>` : `<td class="pl-cell pl-0">·</td>`; };
+    return x.n ? `<td class="pl-cell${on ? " on" : ""}" onclick="__hqPipeline.act('sel',${esc(JSON.stringify(si))},${esc(JSON.stringify(gi))},${esc(JSON.stringify(sgi))})" title="${x.n} items${x.stale ? `, ${x.stale} stale` : ""}"><b>${x.n}</b>${x.stale ? `<span class="pl-st">${x.stale}</span>` : ""}</td>` : `<td class="pl-cell pl-0">·</td>`; };
   const row = (g, gi) => { const open = !!ui.rows[g.id];
-    const head = `<tr class="pl-g"><td class="pl-name"><button class="tog" onclick="__hqPipeline.act('row',${gi})" aria-label="${open ? "collapse" : "expand"}">${g.subs.length > 1 || g.subs[0]?.id != null ? (open ? "▾" : "▸") : ""}</button><a onclick="__hqPipeline.act('sel',-1,${gi},-1)"><b>${esc(g.title)}</b></a> <span class="k">${((n) => (n ? `${n} ${esc(m.subBy)}${n === 1 ? "" : "s"}` : ""))(g.subs.filter((s) => s.id != null).length)}</span></td>${T.ids.map((_, si) => cell(g.c, si, gi, -1)).join("")}<td class="pl-cell pl-tot" onclick="__hqPipeline.act('sel',-1,${gi},-1)"><b>${g.xs.length}</b>${g.stale ? `<span class="pl-st">${g.stale}</span>` : ""}</td></tr>`;
-    const subs = open ? g.subs.map((s, sgi) => `<tr class="pl-sub"><td class="pl-name"><a onclick="__hqPipeline.act('sel',-1,${gi},${sgi})">${esc(s.title)}</a></td>${T.ids.map((_, si) => cell(s.c, si, gi, sgi)).join("")}<td class="pl-cell pl-tot" onclick="__hqPipeline.act('sel',-1,${gi},${sgi})"><b>${s.xs.length}</b>${s.stale ? `<span class="pl-st">${s.stale}</span>` : ""}</td></tr>`).join("") : "";
+    const head = `<tr class="pl-g"><td class="pl-name"><button class="tog" onclick="__hqPipeline.act('row',${esc(JSON.stringify(gi))})" aria-label="${open ? "collapse" : "expand"}">${g.subs.length > 1 || g.subs[0]?.id != null ? (open ? "▾" : "▸") : ""}</button><a onclick="__hqPipeline.act('sel',-1,${esc(JSON.stringify(gi))},-1)"><b>${esc(g.title)}</b></a> <span class="k">${((n) => (n ? `${n} ${esc(m.subBy)}${n === 1 ? "" : "s"}` : ""))(g.subs.filter((s) => s.id != null).length)}</span></td>${T.ids.map((_, si) => cell(g.c, si, gi, -1)).join("")}<td class="pl-cell pl-tot" onclick="__hqPipeline.act('sel',-1,${esc(JSON.stringify(gi))},-1)"><b>${g.xs.length}</b>${g.stale ? `<span class="pl-st">${g.stale}</span>` : ""}</td></tr>`;
+    const subs = open ? g.subs.map((s, sgi) => `<tr class="pl-sub"><td class="pl-name"><a onclick="__hqPipeline.act('sel',-1,${esc(JSON.stringify(gi))},${esc(JSON.stringify(sgi))})">${esc(s.title)}</a></td>${T.ids.map((_, si) => cell(s.c, si, gi, sgi)).join("")}<td class="pl-cell pl-tot" onclick="__hqPipeline.act('sel',-1,${esc(JSON.stringify(gi))},${esc(JSON.stringify(sgi))})"><b>${s.xs.length}</b>${s.stale ? `<span class="pl-st">${s.stale}</span>` : ""}</td></tr>`).join("") : "";
     return head + subs; };
-  const totals = `<tr class="pl-g pl-all"><td class="pl-name"><b>All</b></td>${T.ids.map((id, si) => { const x = T.c[id]; return x.n ? `<td class="pl-cell" onclick="__hqPipeline.act('sel',${si},-1,-1)"><b>${x.n}</b>${x.stale ? `<span class="pl-st">${x.stale}</span>` : ""}</td>` : `<td class="pl-cell pl-0">·</td>`; }).join("")}<td class="pl-cell pl-tot"><b>${T.xs.length}</b>${T.stale ? `<span class="pl-st">${T.stale}</span>` : ""}</td></tr>`;
+  const totals = `<tr class="pl-g pl-all"><td class="pl-name"><b>All</b></td>${T.ids.map((id, si) => { const x = T.c[id]; return x.n ? `<td class="pl-cell" onclick="__hqPipeline.act('sel',${esc(JSON.stringify(si))},-1,-1)"><b>${x.n}</b>${x.stale ? `<span class="pl-st">${x.stale}</span>` : ""}</td>` : `<td class="pl-cell pl-0">·</td>`; }).join("")}<td class="pl-cell pl-tot"><b>${T.xs.length}</b>${T.stale ? `<span class="pl-st">${T.stale}</span>` : ""}</td></tr>`;
   return `<div class="k pl-note">One row per ${esc(m.groupBy)}; ▸ opens its ${esc(m.subBy)}s. A cell is the items in that state; <span class="pl-st">n</span> of them have not moved in ${m.stale}+ days. Click a cell or a name to list them.</div>
     <div class="tscroll"><table class="pl-tab"><tr><th>${esc(m.groupBy)}</th>${T.states.map((s) => `<th title="${esc(`${s.owner ?? ""} · ${s.kind ?? ""}`)}">${esc(s.title ?? s.id)}</th>`).join("")}<th>total</th></tr>${T.groups.map(row).join("")}${totals}</table></div>`;
 }
@@ -161,7 +161,7 @@ const order = (a, b) => (b.stale - a.stale) || ((b.age ?? -1) - (a.age ?? -1)) |
 /** The item card: the drill-down and the kanban share it. */
 function card(m, T, x, esc) {
   const it = x.it, w = it.waitingOn ?? [], grp = T.groups.find((g) => g.id === x.g), sub = grp?.subs.find((s) => (s.id ?? "") === (x.sg ?? ""));
-  return `<div class="pl-card${x.stale ? " stale" : ""}"><a class="pl-ct2" onclick="__hqPipeline.act('pick',${x.n})" title="show its path">${esc(it.title ?? it.id)}</a>
+  return `<div class="pl-card${x.stale ? " stale" : ""}"><a class="pl-ct2" onclick="__hqPipeline.act('pick',${esc(JSON.stringify(x.n))})" title="show its path">${esc(it.title ?? it.id)}</a>
     <div class="k">${esc(grp?.title ?? x.g)}${sub?.id != null ? ` · ${esc(sub.title)}` : ""} · ${esc(title(T, it.state))}${it.version != null ? ` · v${esc(it.version)}` : ""}${x.age != null ? ` · ${x.age} d here` : ""}${x.stale ? ` · <b class="pl-warn">stale</b>` : ""}</div>
     ${w.length ? `<div class="pl-wait"><span class="k">waits on</span> ${esc(cut(w[0], 140))}${w.length > 1 ? ` <span class="k">+${w.length - 1} more</span>` : ""}</div>` : `<div class="k">waits on nothing</div>`}</div>`;
 }
@@ -172,13 +172,13 @@ function kanban(m, T, ui, esc) {
   const sec = (g, gi) => {
     const open = ui.open.has(g.id);
     const chips = T.states.filter((s) => g.c[s.id]?.n).map((s) => `<span class="chip">${esc(s.title ?? s.id)} ${g.c[s.id].n}${g.c[s.id].stale ? ` <b class="pl-warn">${g.c[s.id].stale}</b>` : ""}</span>`).join(" ");
-    const head = `<button class="lhead" onclick="__hqPipeline.act('open',${gi})" aria-expanded="${open}"><span class="caret">${open ? "▾" : "▸"}</span><b>${esc(g.title)}</b><span class="k">${g.xs.length} items${g.stale ? ` · <span class="pl-warn">${g.stale} stale</span>` : ""}</span><span class="pl-chips">${chips}</span></button>`;
+    const head = `<button class="lhead" onclick="__hqPipeline.act('open',${esc(JSON.stringify(gi))})" aria-expanded="${open}"><span class="caret">${open ? "▾" : "▸"}</span><b>${esc(g.title)}</b><span class="k">${g.xs.length} items${g.stale ? ` · <span class="pl-warn">${g.stale} stale</span>` : ""}</span><span class="pl-chips">${chips}</span></button>`;
     if (!open) return `<div class="lgroup">${head}</div>`;
     const empty = T.states.filter((s) => !g.c[s.id]?.n);
     const cols = T.states.map((s, si) => {
       if (!g.c[s.id]?.n) return "";
       const xs = g.xs.filter((x) => x.it.state === s.id).sort(order), n = ui.more[`${gi}:${si}`] ?? PAGE;
-      return `<div class="pl-col"><div class="pl-colh"><b>${esc(s.title ?? s.id)}</b> <span class="k">${xs.length}</span><div class="k">${esc(s.owner ?? "")}${s.kind ? ` · ${esc(s.kind)}` : ""}</div></div>${xs.slice(0, n).map((x) => card(m, T, x, esc)).join("")}${xs.length > n ? `<button class="pill pl-more" onclick="__hqPipeline.act('more',${gi},${si})">show ${Math.min(PAGE, xs.length - n)} more <span class="k">(${xs.length - n} left)</span></button>` : ""}</div>`;
+      return `<div class="pl-col"><div class="pl-colh"><b>${esc(s.title ?? s.id)}</b> <span class="k">${xs.length}</span><div class="k">${esc(s.owner ?? "")}${s.kind ? ` · ${esc(s.kind)}` : ""}</div></div>${xs.slice(0, n).map((x) => card(m, T, x, esc)).join("")}${xs.length > n ? `<button class="pill pl-more" onclick="__hqPipeline.act('more',${esc(JSON.stringify(gi))},${esc(JSON.stringify(si))})">show ${Math.min(PAGE, xs.length - n)} more <span class="k">(${xs.length - n} left)</span></button>` : ""}</div>`;
     }).join("");
     return `<div class="lgroup">${head}<div class="pl-cols">${cols}</div>${empty.length ? `<div class="k pl-note">no items in ${empty.map((s) => esc(s.title ?? s.id)).join(", ")}</div>` : ""}</div>`;
   };
@@ -197,7 +197,7 @@ function results(m, ui, esc) {
   const hits = m.all.filter((x) => String(x.it.title ?? "").toLowerCase().includes(q) || String(x.it.id ?? "").toLowerCase().includes(q));
   if (!hits.length) return `<div class="empty">No item matches.</div>`;
   const T = (x) => m.types.find((t) => t.id === x.it.type);
-  return `<div class="k pl-note">${hits.length} match${hits.length === 1 ? "" : "es"}${hits.length > 20 ? "; the first 20" : ""}</div><table><tr><th>item</th><th>state</th><th>since</th></tr>${hits.slice(0, 20).map((x) => `<tr class="click" onclick="__hqPipeline.act('pick',${x.n})"><td><b>${esc(x.it.title ?? x.it.id)}</b><div class="k">${esc(x.it.id)}</div></td><td><span class="chip">${esc(T(x) ? title(T(x), x.it.state) : x.it.state)}</span>${x.stale ? ` <b class="pl-warn">stale</b>` : ""}</td><td class="k nowrap">${esc(x.it.since ?? "")}</td></tr>`).join("")}</table>`;
+  return `<div class="k pl-note">${hits.length} match${hits.length === 1 ? "" : "es"}${hits.length > 20 ? "; the first 20" : ""}</div><table><tr><th>item</th><th>state</th><th>since</th></tr>${hits.slice(0, 20).map((x) => `<tr class="click" onclick="__hqPipeline.act('pick',${esc(JSON.stringify(x.n))})"><td><b>${esc(x.it.title ?? x.it.id)}</b><div class="k">${esc(x.it.id)}</div></td><td><span class="chip">${esc(T(x) ? title(T(x), x.it.state) : x.it.state)}</span>${x.stale ? ` <b class="pl-warn">stale</b>` : ""}</td><td class="k nowrap">${esc(x.it.since ?? "")}</td></tr>`).join("")}</table>`;
 }
 function path(m, x, esc) {
   const T = m.types.find((t) => t.id === x.it.type) ?? m.types[0], it = x.it;

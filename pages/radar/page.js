@@ -41,7 +41,7 @@ function one(radar, esc, idx) {
   const labels = quadrants.map((q, k) => { const [anchor, cx, cy] = CORNER[k]; return `<text x="${cx ? size - 4 : 4}" y="${cy ? size - 6 : 14}" text-anchor="${anchor}" class="rq">${esc(q.name)}</text>`; }).join("");
   const svg = `<svg class="rd-svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="${esc(radar.title)}: ${blips.length} entries">${rings}${dots}${labels}</svg>`;
   const legend = (k) => { const q = quadrants[k]; if (!q) return "<div></div>"; return `<div class="rd-leg"><h3>${esc(q.name)}</h3>${RINGS.map(([r]) => { const es = blips.filter((b) => b.quadrant === q.id && b.ring === r); return es.length ? `<div><div class="k rd-rn rd-${r}">${r}</div><ol>${es.map((b) => `<li value="${b.n}" title="${esc(b.why ?? "")}"><b>${esc(b.name)}</b>${b.version ? ` <span class="k">${esc(b.version)}</span>` : ""}${b.replaces ? ` <span class="k">→ ${esc(b.replaces)}</span>` : ""}${(b.history ?? []).length ? ` <span class="k">(was ${b.history.map((h) => esc(h.ring)).join(" → ")})</span>` : ""}</li>`).join("")}</ol></div>` : ""; }).join("") || `<div class="k">none yet</div>`}</div>`; };
-  return `<section class="rd-one" id="radar-${esc(radar.id)}"><h2>${esc(radar.title)} <span class="k">${blips.length} · ${RINGS.map(([r]) => `${radar.byRing?.[r] ?? 0} ${r}`).join(" · ")}</span></h2>
+  return `<section class="rd-one" id="radar-${esc(radar.id)}"><h2>${esc(radar.title)} <span class="k">${blips.length} · ${RINGS.map(([r]) => `${esc(radar.byRing?.[r] ?? 0)} ${r}`).join(" · ")}</span></h2>
     <div class="rd-layout">${legend(1)}${svg}${legend(0)}${legend(2)}${legend(3)}</div></section>`;
 }
 
@@ -49,8 +49,8 @@ export function render({ dashboard, esc }) {
   const v = dashboard?.radar;
   if (!v || !(v.entries ?? []).length) return `<h1>Tech radar</h1><div class="empty">No radar yet. A company keeps radar.json beside company.json (system3-meta src/radar.mjs, templates/radar.json): three radars, tech stack, org and techniques, and AI.</div>`;
   const radars = (v.radars ?? []).length ? v.radars : [{ id: "tech", title: "Tech radar", quadrants: [{ id: "techniques", name: "Techniques" }, { id: "tools", name: "Tools" }, { id: "platforms", name: "Platforms" }, { id: "languages-frameworks", name: "Languages & frameworks" }], entries: v.entries, byRing: v.byRing }];
-  return `${STYLE}<h1>Radars</h1><div class="sub1">${v.total} entries in ${radars.length} radar${radars.length > 1 ? "s" : ""} · reviewed ${esc(v.reviewed ?? "never")} by ${esc(v.owner ?? "?")} · hover a blip for why · moves between rings follow the radar flow</div>
-  <nav class="rd-nav">${radars.map((r) => `<a href="javascript:void 0" onclick="document.getElementById('radar-${esc(r.id)}').scrollIntoView({behavior:'smooth'})">${esc(r.title)}</a>`).join(" · ")}</nav>
+  return `${STYLE}<h1>Radars</h1><div class="sub1">${esc(v.total)} entries in ${radars.length} radar${radars.length > 1 ? "s" : ""} · reviewed ${esc(v.reviewed ?? "never")} by ${esc(v.owner ?? "?")} · hover a blip for why · moves between rings follow the radar flow</div>
+  <nav class="rd-nav">${radars.map((r) => `<a href="javascript:void 0" onclick="document.getElementById(${esc(JSON.stringify(`radar-${typeof r.id === "string" ? r.id : ""}`))}).scrollIntoView({behavior:'smooth'})">${esc(r.title)}</a>`).join(" · ")}</nav>
   ${(v.problems ?? []).length ? `<div class="card rd-problems"><b>Problems</b><ul>${v.problems.map((p) => `<li>${esc(p)}</li>`).join("")}</ul></div>` : ""}
   ${radars.map((r, i) => one(r, esc, i)).join("")}`;
 }
