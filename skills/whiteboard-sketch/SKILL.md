@@ -1,6 +1,6 @@
 ---
 name: whiteboard-sketch
-description: Illustrate an architecture, a system design, a conceptual sketch or a wireframe on the city's whiteboard, written as data (items and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.
+description: Illustrate an architecture, a system design, a sequence diagram, a state machine, a data flow, an ER or UML model, C4, a cloud architecture (AWS, Google Cloud, Azure) or a wireframe on the city's whiteboard, written as data (items from a shape library, and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.
 ---
 
 # Whiteboard sketch
@@ -32,6 +32,70 @@ on an isometric whiteboard in the city, where it composes with every other eleme
   - Free arrows: `arrow`, with `points: [[x, y], …]`.
 - **Edges.** They join two items by id: `from`, `to`, optional `text`, `dashed` and `color`, and `head` (`end`,
   `both` or `none`).
+
+## The shape library
+
+Besides the shapes above, `shape` can be any name in Meta's shape library (`hq/sketch-shapes.js`), which has about
+130 shapes in 11 libraries, plus about 100 cloud service names. City › Tools shows them all as a palette, each with the
+name to write.
+
+- **Basic.** `rounded`, `ellipse`, `triangle`, `hexagon`, `parallelogram`, `trapezoid`, `star`, `cross`, `callout`,
+  `block-arrow`, `brace`, `cylinder`.
+- **Flowchart.** `process`, `decision`, `terminator`, `data`, `document`, `multi-document`, `predefined`,
+  `manual-input`, `manual-operation`, `preparation`, `delay`, `display`, `stored-data`, `connector`, `offpage`.
+- **Sequence diagram.** One item draws the whole diagram:
+  `{ "shape": "sequence", "x": 10, "y": 30, "participants": [{ "id": "u", "text": "user", "kind": "actor" }, …], "messages": […] }`.
+  - Participant kinds: `box`, `actor`, `db`, `queue`, `boundary`.
+  - A message is `{ "from", "to", "text", "kind": "sync" | "async" | "reply" | "create" }`. A message from a
+    participant to itself draws as a loop.
+  - A note is `{ "note": "…", "over": ["a", "b"] }`.
+  - A frame is `{ "frag": "alt" | "loop" | "opt" | "par" | "break" | "critical", "text": "[guard]" }`, closed with
+    `{ "end": true }`. Inside a frame, `{ "else": "[guard]" }` adds a divider.
+- **State machine.** `state` (with optional `entry`, `do` and `exit`), `initial`, `final`, `choice`, `fork`,
+  `history`, `composite`, `terminate`.
+- **Activity and BPMN.**
+  - `action`, `merge`, `gateway` (`kind: "parallel"`), `event-start`, `event-end`, `event-timer`, `event-message`.
+  - `swimlane`: a pool with `lanes: [...]`, and `vertical: true` for columns.
+- **UML.**
+  - `class`, `interface`, `enum` and `object`, which take `attributes: [...]` and `methods: [...]`.
+  - `package`, `component`, `node`, `artifact`, `usecase`, `system-boundary`.
+- **Entity relationship.**
+  - `entity` and `weak-entity`, with `fields: ["PK id: text", "FK board: text", "title: text"]`.
+  - `relationship`, `attribute`.
+- **Data flow.** `external`, `process-dfd` (`n: "1"`), `datastore` (`n: "D1"`), `trust-boundary`.
+- **C4.** `c4-person`, `c4-system`, `c4-container` and `c4-component` (with `tech` and `description`), `c4-db`,
+  `c4-external`, `c4-boundary`.
+- **Cloud architecture.**
+  - Icons: `server`, `function`, `container`, `kubernetes`, `bucket`, `database`, `cache`, `message-queue`, `topic`,
+    `eventbus`, `stream`, `warehouse`, `cdn`, `dns`, `load-balancer`, `api-gateway`, `auth`, `secrets`, `firewall`,
+    `monitor`, and the rest.
+  - Groups: `cloud-group`, `region`, `zone`, `vpc`, `subnet-public`, `subnet-private`, `security-group`.
+  - Service names: `aws-*` (for example `aws-s3`, `aws-lambda`, `aws-sqs`, `aws-region`, `aws-vpc`), `gcp-*` and
+    `azure-*`. An alias draws the matching icon, labelled with the service's name unless the item has `text`.
+  - The icons are original, vendor-neutral glyphs, not the vendors' artwork.
+- **Wireframes.** `checkbox`, `radio`, `toggle`, `dropdown`, `slider`, `tabs`, `table`, `avatar`, `badge`,
+  `progress`, `navbar`, `card`, `modal`, `list`, `video`, `chart`.
+
+Groups and containers (`group`, `swimlane`, `composite`, `package`, the boundaries, the cloud groups) are drawn behind
+the other items. List them first and size them to hold their contents.
+
+Edges can carry more than an arrow:
+- `route`: `straight` (the default), `orthogonal` (right angles) or `curved` (with `bend`; a negative bend curves the
+  other way).
+- `start` and `end`: what each end of the edge looks like.
+  - Arrows: `arrow`.
+  - UML: `triangle` (generalization; dashed for realization), `diamond` (aggregation), `diamond-filled`
+    (composition), `circle`, `dot`.
+  - ER crow's feet: `one`, `many`, `one-many`, `zero-many`, `zero-one`.
+  - `none` for no mark.
+- `startLabel` and `endLabel`: multiplicities such as `1` and `0..*`.
+- `dashed` or `dotted`.
+- An edge from an item to itself draws as a loop, which is how a state machine shows a self-transition.
+- Edges that join the same two items fan out into separate curves.
+
+There is a worked example of each kind of diagram in `SkyKit.SKETCHES`: `sequence`, `state-machine`, `data-flow`,
+`aws`, `er`, `c4`, `class` and `flowchart`. The best way to start a new diagram is to copy the nearest example and
+change it.
 
 ## Steps
 
