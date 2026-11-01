@@ -58,6 +58,17 @@
    "path": "pages/dashboard/PAGE.md"
   },
   {
+   "id": "docs",
+   "title": "Docs",
+   "description": "How the company works now (the handbook and its living docs by subject), what comes next (the operational plan and the architecture plan, with their horizons) and how the architecture evolved (dated snapshots), apart from the records that explain how it got here.",
+   "kind": "template",
+   "reads": [
+    "docs"
+   ],
+   "path": "pages/docs/PAGE.md",
+   "module": "pages/docs/page.js"
+  },
+  {
    "id": "features",
    "title": "Features",
    "description": "The company's features list. Every feature with its status (live, building, planned, retired), since when, its owner, a summary and its links, grouped by status.",
@@ -227,6 +238,17 @@
    ],
    "path": "pages/projects/PAGE.md",
    "module": "pages/projects/page.js"
+  },
+  {
+   "id": "radar",
+   "title": "Tech radar",
+   "description": "The technology the company trusts, by quadrant (languages and frameworks, tools, platforms, techniques) and ring (adopt, trial, assess, hold), each entry with why, when it was last reviewed, and what replaces it when it is on hold.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/radar/PAGE.md",
+   "module": "pages/radar/page.js"
   },
   {
    "id": "releases",
