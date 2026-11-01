@@ -26,7 +26,7 @@ export function render(ctx) {
 
 // ------------------------------------------------------------ the model: indexes over the contract
 function model(p, rawTypes, items) {
-  const stale = p.staleDays ?? 7, now = Date.now();
+  const stale = Number.isFinite(p.staleDays) ? p.staleDays : 7, now = Date.now(); // a number, whatever the dashboard says (Meta whiteboard re-check 2, R2)
   const age = (d) => (d ? Math.max(0, Math.floor((now - Date.parse(d)) / 86400000)) : null);
   const subBy = p.subgroupBy ?? "subgroup", groupBy = p.groupBy ?? "category";
   const gTitle = {}, sgTitle = {};
