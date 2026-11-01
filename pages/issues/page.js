@@ -35,8 +35,8 @@ export function render(ctx) {
     else if (e.key === "b" && k.view !== "board") G.set("view", "board");
   }); }
   G.cur = key;
-  const pr = (p) => `<span class="is-p is-p${p}" title="${PRIO[p] ?? ""}">${PICON[p] ?? "–"}</span>`;
-  const st = (s) => `<span class="is-st is-${s.replace(" ", "-")}" title="${esc(s)}"></span>`;
+  const pr = (p) => `<span class="is-p is-p${esc(p)}" title="${PRIO[p] ?? ""}">${PICON[p] ?? "–"}</span>`;
+  const st = (s) => `<span class="is-st is-${esc(String(typeof s === "string" ? s : "").replace(" ", "-"))}" title="${esc(s)}"></span>`;
   const row = (i, n) => `<a class="is-row${n === ui.sel ? " is-sel" : ""}" data-iid="${esc(i.id)}" onclick="globalThis.__hqIssues.open(this.dataset.iid)">${pr(i.priority)}<code class="is-id">${esc(i.id)}</code>${st(i.state)}<span class="is-t">${esc(i.title)}</span><span class="is-meta">${i.project ? `<span class="chip">${esc(i.project)}</span>` : ""}${i.owner ? `<span class="k">${esc(i.owner)}</span>` : ""}<span class="k">${esc(i.updated ?? "")}</span></span></a>`;
   const results = () => {
     const xs = hits(); let n = 0;
@@ -55,7 +55,7 @@ export function render(ctx) {
       <div class="k" style="margin-top:8px">from ${esc(is.source ?? "the company's tracker")} · Esc to go back</div>`; };
   const draw = () => {
     if (ui.view === "detail") return detail();
-    const pill = (s) => `<button class="pill${ui.states.has(s) ? " on" : ""}" onclick="globalThis.__hqIssues.toggleState(${esc(JSON.stringify(String(s ?? "")))})">${st(s)} ${s} <span class="k">${is.states?.[s] ?? 0}</span></button>`;
+    const pill = (s) => `<button class="pill${ui.states.has(s) ? " on" : ""}" onclick="globalThis.__hqIssues.toggleState(${esc(JSON.stringify(String(s ?? "")))})">${st(s)} ${s} <span class="k">${esc(is.states?.[s] ?? 0)}</span></button>`;
     const sel = (k, label, opts) => `<select class="pill" onchange="globalThis.__hqIssues.set(${esc(JSON.stringify(String(k ?? "")))},this.value)"><option value="">${label}</option>${opts.map(([v, t]) => `<option value="${esc(v)}"${String(ui[k]) === String(v) ? " selected" : ""}>${esc(t)}</option>`).join("")}</select>`;
     return `<div class="filters"><button class="pill${ui.view === "list" ? " on" : ""}" onclick="globalThis.__hqIssues.set('view','list')" title="l">List</button><button class="pill${ui.view === "board" ? " on" : ""}" onclick="globalThis.__hqIssues.set('view','board')" title="b">Board</button><span class="sep"></span>${STATES.map(pill).join("")}</div>
       <div class="filters">${sel("owner", "Any owner", owners.map((o) => [o, o]))}${sel("project", "Any project", projects.slice(0, 400).map((o) => [o, o]))}${sel("prio", "Any priority", PRIO.map((p, i) => [String(i), p]))}${ui.view === "list" ? sel("group", "No grouping", [["state", "Group by state"], ["owner", "Group by owner"], ["project", "Group by project"]]).replace('<option value="">No grouping</option>', `<option value="none"${ui.group === "none" ? " selected" : ""}>No grouping</option>`) : ""}</div>
@@ -63,7 +63,7 @@ export function render(ctx) {
       <div id="is-results">${results()}</div><div class="k" style="margin-top:8px">keys: j/k move · Enter opens · Esc back · / search · l list · b board</div>`;
   };
   const s = is.states ?? {};
-  return `${STYLE}<h1>Issues</h1><div class="sub1">${is.total.toLocaleString()} issues from ${esc(is.source ?? "the company's tracker")} · ${(s.todo ?? 0) + (s["in progress"] ?? 0) + (s.review ?? 0)} active · ${(s.backlog ?? 0).toLocaleString()} in the backlog</div><div id="is-root">${draw()}</div>`;
+  return `${STYLE}<h1>Issues</h1><div class="sub1">${esc(Number.isFinite(is.total) ? is.total.toLocaleString() : is.total)} issues from ${esc(is.source ?? "the company's tracker")} · ${esc((s.todo ?? 0) + (s["in progress"] ?? 0) + (s.review ?? 0))} active · ${esc(Number.isFinite(s.backlog) ? s.backlog.toLocaleString() : s.backlog ?? 0)} in the backlog</div><div id="is-root">${draw()}</div>`;
 }
 const STYLE = `<style>
 .is-row{display:grid;grid-template-columns:18px auto 12px minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 8px;border-bottom:1px solid var(--line);cursor:pointer;color:var(--text);text-decoration:none}.is-row:hover,.is-sel{background:color-mix(in srgb,var(--accent) 10%,transparent)}
