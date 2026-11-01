@@ -80,6 +80,17 @@
    "module": "pages/features/page.js"
   },
   {
+   "id": "flows",
+   "title": "Flows",
+   "description": "The company's checklists for each kind of work (feature, incident, model, new idea, data), with what to write, who checks it, what to register and which living docs to update, and every piece of work with the steps it still misses.",
+   "kind": "template",
+   "reads": [
+    "dashboard"
+   ],
+   "path": "pages/flows/PAGE.md",
+   "module": "pages/flows/page.js"
+  },
+  {
    "id": "goals",
    "title": "Goals",
    "description": "Goals and OKRs, objectives with key results, each with its metric, baseline, target, current value and owner, linked to the milestones and their predictions. Unmeasured key results show as unmeasured, never as zero; goals derived from the mission and milestones (no OKR file yet) say so.",
