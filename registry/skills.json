@@ -105,7 +105,7 @@
   },
   {
    "id": "whiteboard-sketch",
-   "description": "Illustrate an architecture, a system design, a sequence diagram, a state machine, a data flow, an ER or UML model, C4, a cloud architecture (AWS, Google Cloud, Azure) or a wireframe on the city's whiteboard, written as data (items from a shape library, and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.",
+   "description": "Illustrate (in JSON or in Mermaid, laid out for you) an architecture, a system design, a sequence diagram, a state machine, a data flow, an ER or UML model, C4, a cloud architecture (AWS, Google Cloud, Azure) or a wireframe on the city's whiteboard, written as data (items from a shape library, and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.",
    "path": "skills/whiteboard-sketch/SKILL.md",
    "usedBy": []
   }

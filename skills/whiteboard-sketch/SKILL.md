@@ -1,6 +1,6 @@
 ---
 name: whiteboard-sketch
-description: Illustrate an architecture, a system design, a sequence diagram, a state machine, a data flow, an ER or UML model, C4, a cloud architecture (AWS, Google Cloud, Azure) or a wireframe on the city's whiteboard, written as data (items from a shape library, and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.
+description: Illustrate (in JSON or in Mermaid, laid out for you) an architecture, a system design, a sequence diagram, a state machine, a data flow, an ER or UML model, C4, a cloud architecture (AWS, Google Cloud, Azure) or a wireframe on the city's whiteboard, written as data (items from a shape library, and edges) that the drawing kit draws. Use when a picture would explain a design, a meeting's decision or a screen better than prose.
 ---
 
 # Whiteboard sketch
@@ -80,13 +80,14 @@ Groups and containers (`group`, `swimlane`, `composite`, `package`, the boundari
 the other items. List them first and size them to hold their contents.
 
 Edges can carry more than an arrow:
-- `route`: `straight` (the default), `orthogonal` (right angles) or `curved` (with `bend`; a negative bend curves the
-  other way).
+- `route`: `straight` (the default), `orthogonal` (right angles), `curved` (with `bend`; a negative bend curves the
+  other way) or `spline` (a smooth S, as trees use).
 - `start` and `end`: what each end of the edge looks like.
   - Arrows: `arrow`.
   - UML: `triangle` (generalization; dashed for realization), `diamond` (aggregation), `diamond-filled`
     (composition), `circle`, `dot`.
   - ER crow's feet: `one`, `many`, `one-many`, `zero-many`, `zero-one`.
+  - `cross` (Mermaid's `--x`).
   - `none` for no mark.
 - `startLabel` and `endLabel`: multiplicities such as `1` and `0..*`.
 - `dashed` or `dotted`.
@@ -96,6 +97,45 @@ Edges can carry more than an arrow:
 There is a worked example of each kind of diagram in `SkyKit.SKETCHES`: `sequence`, `state-machine`, `data-flow`,
 `aws`, `er`, `c4`, `class` and `flowchart`. The best way to start a new diagram is to copy the nearest example and
 change it.
+
+## Let the board place it: layouts and Mermaid
+
+You rarely need coordinates. There are two ways to skip them.
+
+**Mermaid.** Write the diagram in Mermaid and post it as `{ "mermaid": "…" }`, or as a `.mmd` file:
+`crew sketch --board=<id> --file=diagram.mmd`. The board reads these diagram types:
+- `flowchart` and `graph`:
+  - every node shape, including `id@{ shape: cyl, label: "…" }`;
+  - links with labels (`-->|text|` or `-- text -->`), dotted (`-.->`), thick (`==>`), with `o` and `x` heads, and
+    `A & B --> C`;
+  - `subgraph … end`.
+- `sequenceDiagram`: participants and actors; `->>`, `-->>`, `-)` and `-x`; notes; alt, else, opt, loop, par, critical
+  and break.
+- `stateDiagram-v2`: `[*]`, transitions with labels, composite states, `<<choice>>`, `<<fork>>`, `<<join>>`, notes.
+- `erDiagram`: crow's-foot cardinalities, and attributes with PK and FK.
+- `classDiagram`: members, `<|--`, `*--`, `o--`, `-->`, `..>` and `..|>` with cardinalities, `<<interface>>`,
+  namespaces, notes.
+- `mindmap`.
+- `architecture-beta`: groups, services and junctions. Icons such as `logos:aws-s3` become the library's AWS icons.
+
+A line the board cannot read comes back as a problem with its line number; nothing is guessed. To try Mermaid before
+you post, use City › Tools, which has a live playground.
+
+**`layout` in a JSON sketch.** Add `"layout": "layered"` (or `{ "kind": "layered", "dir": "LR", "gap": 34,
+"rank": 54 }`) and leave out `x` and `y`. The kinds:
+- `layered`: flows, state machines and architectures. Ranks follow the edges, crossings are kept few, and long edges
+  bend around the nodes in their way.
+- `tree`: hierarchies.
+- `mindmap`: two balanced sides around a root.
+- `grid`: a palette or a catalogue.
+
+Also:
+- Put an item in a group with `"in": "<group id>"`. Groups fit themselves around their members.
+- Boxes grow to fit their labels.
+- `SkyKit.sketchLayout(sketch)` returns the placed sketch. Use it to pin a sketch's positions, then adjust them by hand.
+
+Use JSON with coordinates only when the position itself carries meaning, such as a wireframe or a board you lay out on
+purpose.
 
 ## Steps
 
